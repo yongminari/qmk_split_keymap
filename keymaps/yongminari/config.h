@@ -7,6 +7,9 @@
 #define QUICK_TAP_TERM 175
 #define TAPPING_FORCE_HOLD
 
+/* Combo 설정 */
+#define COMBO_TERM 200
+
 /* 분할 키보드 통신 최적화 */
 #define SPLIT_USB_DETECT
 #define MASTER_LEFT

@@ -16,11 +16,11 @@
 Left Side                          | Right Side
 -----------------------------------|------------------------------------
 ESC   Q     W     E     R     T    ENT | DEL   Y     U     I     O     P     BSPC
-LCTL  A(G)  S(A)  D(C)  F(S)  G    TAB | ESC   H     J(S)  K(C)  L(A)  ;(G)  '
-LSFT  Z(Num)X     C     V(Nav)B        | N(Nav)M     ,     .     /(Sym)RAW(T)
-            ALT   GUI   TAB(V)         | ENT(V)SPC   Func(L)
+LCTL  A(G)  S(A)  D(C)  F(S)  G    TAB | TG(R) H     J(S)  K(C)  L(A)  ;(G)  '
+LSFT  Z(Num)X     C     V(Nav)B        | N(Nav)M     ,     .     /(Sym)RSFT
+            ALT   GUI   TAB            | ENT   SPC(E)Func(L)
 ```
-*(G=GUI, A=Alt, C=Ctrl, S=Shift, V=Vertical Key, T=Toggle)*
+*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, SPC(E)=Extra Layer)*
 
 ### 2. Navigation Layer (`_NAV`)
 방향키와 마우스 제어 레이어입니다. (`V` 또는 `N` 키 홀드)
@@ -35,7 +35,7 @@ Left Side                          | Right Side
 ```
 
 ### 3. Number Pad (`_NUM`)
-숫자 입력 레이어입니다. (`Z` 키 홀드) 일반 숫자 키코드를 사용하여 OS 호환성을 높였습니다.
+숫자 입력 레이어입니다. (`Z` 키 홀드)
 
 ```text
 Left Side                          | Right Side
@@ -48,26 +48,25 @@ Left Side                          | Right Side
 
 ### 4. Symbols (`_SYM`)
 특수 기호 레이어입니다. (`G` 또는 `/` 키 홀드)
-*(G_SYM은 현재 keymap.c에서 G 키에 적용 준비 중)*
 
 ```text
 Left Side                          | Right Side
 -----------------------------------|------------------------------------
-      !     @     #     $     %     -  | -     ^     &     *     (     )     `
--     ^     &     *     -     =     -  | -     [     ]     '     "     ;     -
+      !     @     #     $     %     -  | -     [     ]     {     }     `     -
+-     ^     &     *     -     =     -  | -     (     )     '     "     :     -
 -     ~     _     +     |     \        | -     -     -     -     -     -     -
             -     -     -              | -     -     -
 ```
 
-### 5. Function Keys (`_FUNC`)
-F1 ~ F12 키 레이어입니다. (오른쪽 엄지 가장 우측 키 홀드)
+### 5. Extra Layer (`_EXTRA`)
+엄지 Space 키를 홀드한 상태에서 사용하는 레이어입니다.
 
 ```text
 Left Side                          | Right Side
 -----------------------------------|------------------------------------
-      -     -     -     -     -     -  | -     F12   F7    F8    F9    -     -
--     -     -     -     -     -     -  | -     F11   F4    F5    F6    -     -
--     -     -     -     -     -        | -     F10   F1    F2    F3    -     -
+      TAB   -     -     -     -     -  | -     -     -     -     -     -     -
+-     -     -     -     -     -     -  | -     -     -     -     -     -     -
+-     -     -     -     -     -        | -     -     -     -     -     -     -
             -     -     -              | -     -     -
 ```
 
@@ -91,22 +90,23 @@ qmk compile -kb crkbd/rev4_1/standard -km yongminari
 
 ```bash
 # 장치 이름(sdX1)은 lsblk로 확인 필수
-sudo dd if=~/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of=/dev/sdX1 conv=fdatasync
+sudo dd if=~/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of=/dev/sdX1 conv=fdatasync status=progress
 ```
 
 ## ⌨️ Keymap Features
 - **Home Row Mods (GACS):** `A,S,D,F / J,K,L,;` 키에 GUI, Alt, Ctrl, Shift 적용.
 - **Tapping Term:** 200ms.
-- **Tapping Optimizations:**
-  - 오작동 방지를 위해 `HOLD_ON_OTHER_KEY_PRESS` 및 `PERMISSIVE_HOLD` 제거.
-  - 빠른 타이핑 시 의도치 않은 Mod 발동을 줄이고 `TAPPING_TERM`을 엄격하게 준수하도록 최적화.
+- **Tapping Optimizations:** 오작동 방지를 위해 `HOLD_ON_OTHER_KEY_PRESS` 및 `PERMISSIVE_HOLD` 제거.
 - **Layers:**
   - `_DEFAULT`: 기본 알파 및 Home Row Mods, `G` 키 홀드 시 `_SYM` 레이어 진입.
-  - `_NAV`: 방향키, 마우스 제어, Backspace/Delete.
-  - `_NUM`: Kanata 스타일 숫자 패드 (Z 키 홀드).
-  - `_SYM`: Kanata 스타일 특수 기호 (G 키 또는 / 키 홀드).
-  - `_FUNC`: F1~F12 기능키.
-  - `_RAW`: 게임용 순정 모드 (토글 가능).
+  - `_NAV`: 방향키, 마우스 제어.
+  - `_NUM`: Kanata 스타일 숫자 패드.
+  - `_SYM`: Kanata 스타일 특수 기호.
+  - `_EXTRA`: **Space 홀드 시 활성화. `Space + Q` 조합으로 `Tab` 입력.**
+  - `_RAW`: 홈로우 정지 모드 (오른쪽 검지 안쪽 키로 토글).
+- **Key Position Changes:**
+  - `TG(_RAW)` (홈로우 정지): **오른쪽 검지 안쪽(8번째 키)**으로 이동 및 모든 레이어 통일.
+  - `KC_RSFT`: **오른쪽 맨 우측 하단** 고정.
 
 ## 📌 TODO
 - [ ] 레이어별 키 배치 최적화 (사용하면서 보정 필요)

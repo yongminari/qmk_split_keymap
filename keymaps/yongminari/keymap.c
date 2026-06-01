@@ -7,7 +7,8 @@ enum layers {
     _NUM,
     _SYM,
     _FUNC,
-    _RAW
+    _RAW,
+    _EXTRA
 };
 
 /* Home Row Mods Aliases */
@@ -27,6 +28,7 @@ enum layers {
 #define Z_NUM   LT(_NUM, KC_Z)
 #define G_SYM   LT(_SYM, KC_G)
 #define SL_SYM  LT(_SYM, KC_SLSH)
+#define SPC_EXT LT(_EXTRA, KC_SPC)
 
 /* Special Aliases */
 #define ESC_CTL CTL_T(KC_ESC)
@@ -37,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 0: Left & Right */
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_ENT,    KC_DEL,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         /* Row 1: Left & Right */
-        KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   G_SYM,   KC_TAB,    KC_ESC,  KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
+        KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   G_SYM,   KC_TAB,    TG(_RAW),KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
-        KC_LSFT, Z_NUM,   KC_X,    KC_C,    V_NAV,   KC_B,               N_NAV,   KC_M,    KC_COMM, KC_DOT,  SL_SYM,  TG(_RAW),
+        KC_LSFT, Z_NUM,   KC_X,    KC_C,    V_NAV,   KC_B,               N_NAV,   KC_M,    KC_COMM, KC_DOT,  SL_SYM,  KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
-        KC_LALT, KC_LGUI, KC_TAB,                                        KC_ENT,  KC_SPC,  LA_FUNC
+        KC_LALT, KC_LGUI, KC_TAB,                                        KC_ENT,  SPC_EXT, LA_FUNC
     ),
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
@@ -74,8 +76,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_RAW] = LAYOUT_split_3x6_3_ex2(
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_ENT,    KC_DEL,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-        KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TAB,    KC_ESC,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, TG(_RAW),
+        KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TAB,    TG(_RAW),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         KC_LALT, KC_LGUI, KC_TAB,                                        KC_ENT,  KC_SPC,  KC_RALT
+    ),
+
+    [_EXTRA] = LAYOUT_split_3x6_3_ex2(
+        _______, KC_TAB,  _______, _______, _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,               _______, _______, _______, _______, _______, _______,
+        _______, _______, _______,                                        _______, _______, _______
     )
 };
