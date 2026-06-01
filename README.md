@@ -30,12 +30,12 @@ Left Side                          | Right Side
 -----------------------------------|------------------------------------
       -     MS_U  -     -     -     -  | -     HOME  PGUP  PGDN  END   -     -
 -     MS_L  MS_D  MS_R  -     WH_U  -  | -     LEFT  DOWN  UP    RGHT  -     -
--     -     WH_D  -     -     -        | -     -     -     -     -     -     -
+-     -     WH_D  -     -     -        | -     -     BSPC  DEL   -     -     -
             -     -     -              | -     -     -
 ```
 
 ### 3. Number Pad (`_NUM`)
-숫자 입력 레이어입니다. (`Z` 키 홀드)
+숫자 입력 레이어입니다. (`Z` 키 홀드) 일반 숫자 키코드를 사용하여 OS 호환성을 높였습니다.
 
 ```text
 Left Side                          | Right Side
@@ -48,6 +48,7 @@ Left Side                          | Right Side
 
 ### 4. Symbols (`_SYM`)
 특수 기호 레이어입니다. (`G` 또는 `/` 키 홀드)
+*(G_SYM은 현재 keymap.c에서 G 키에 적용 준비 중)*
 
 ```text
 Left Side                          | Right Side
@@ -72,7 +73,6 @@ Left Side                          | Right Side
 
 ## 🚀 Quick Start (NixOS)
 
-
 ### 1. Build
 `qmk_firmware` 폴더 내의 해당 위치로 파일을 동기화한 후 빌드를 수행합니다.
 ```bash
@@ -80,6 +80,7 @@ Left Side                          | Right Side
 cp -r keymaps/yongminari ~/qmk_firmware/keyboards/crkbd/keymaps/
 
 # 빌드 실행
+cd ~/qmk_firmware
 qmk compile -kb crkbd/rev4_1/standard -km yongminari
 ```
 
@@ -95,11 +96,14 @@ sudo dd if=~/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of=/dev/sdX1 conv
 
 ## ⌨️ Keymap Features
 - **Home Row Mods (GACS):** `A,S,D,F / J,K,L,;` 키에 GUI, Alt, Ctrl, Shift 적용.
-- **Tapping Term:** 200ms (쾌적한 반응 속도를 위해 조정).
+- **Tapping Term:** 200ms.
+- **Tapping Optimizations:**
+  - `HOLD_ON_OTHER_KEY_PRESS`: 키를 누른 상태에서 다른 키를 누르면 즉시 홀드로 인식 (레이어 전환 속도 향상).
+  - `PERMISSIVE_HOLD` 및 `QUICK_TAP_TERM` 적용.
 - **Layers:**
   - `_DEFAULT`: 기본 알파 및 Home Row Mods
-  - `_NAV`: 방향키 및 마우스 제어
-  - `_NUM`: 숫자 패드
+  - `_NAV`: 방향키, Backspace(M), Delete(Comma)
+  - `_NUM`: 숫자 패드 (표준 숫자 키코드)
   - `_SYM`: 특수 기호
   - `_FUNC`: F1~F12 기능키
   - `_RAW`: 게임용 순정 모드 (토글 가능)
