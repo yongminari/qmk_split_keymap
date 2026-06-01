@@ -4,8 +4,6 @@
 #define TAPPING_TERM 200
 
 /* Home Row Mods 최적화 설정 */
-#define PERMISSIVE_HOLD
-#define HOLD_ON_OTHER_KEY_PRESS
 #define QUICK_TAP_TERM 175
 #define TAPPING_FORCE_HOLD
 

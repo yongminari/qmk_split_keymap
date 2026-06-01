@@ -98,15 +98,15 @@ sudo dd if=~/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of=/dev/sdX1 conv
 - **Home Row Mods (GACS):** `A,S,D,F / J,K,L,;` 키에 GUI, Alt, Ctrl, Shift 적용.
 - **Tapping Term:** 200ms.
 - **Tapping Optimizations:**
-  - `HOLD_ON_OTHER_KEY_PRESS`: 키를 누른 상태에서 다른 키를 누르면 즉시 홀드로 인식 (레이어 전환 속도 향상).
-  - `PERMISSIVE_HOLD` 및 `QUICK_TAP_TERM` 적용.
+  - 오작동 방지를 위해 `HOLD_ON_OTHER_KEY_PRESS` 및 `PERMISSIVE_HOLD` 제거.
+  - 빠른 타이핑 시 의도치 않은 Mod 발동을 줄이고 `TAPPING_TERM`을 엄격하게 준수하도록 최적화.
 - **Layers:**
-  - `_DEFAULT`: 기본 알파 및 Home Row Mods
-  - `_NAV`: 방향키, Backspace(M), Delete(Comma)
-  - `_NUM`: 숫자 패드 (표준 숫자 키코드)
-  - `_SYM`: 특수 기호
-  - `_FUNC`: F1~F12 기능키
-  - `_RAW`: 게임용 순정 모드 (토글 가능)
+  - `_DEFAULT`: 기본 알파 및 Home Row Mods, `G` 키 홀드 시 `_SYM` 레이어 진입.
+  - `_NAV`: 방향키, 마우스 제어, Backspace/Delete.
+  - `_NUM`: Kanata 스타일 숫자 패드 (Z 키 홀드).
+  - `_SYM`: Kanata 스타일 특수 기호 (G 키 또는 / 키 홀드).
+  - `_FUNC`: F1~F12 기능키.
+  - `_RAW`: 게임용 순정 모드 (토글 가능).
 
 ## 📌 TODO
 - [ ] 레이어별 키 배치 최적화 (사용하면서 보정 필요)
