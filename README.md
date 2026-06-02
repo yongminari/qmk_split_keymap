@@ -105,8 +105,9 @@ sudo dd if=~/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of=/dev/sdX1 conv
   - `_EXTRA`: **Space 홀드 시 활성화. `Space + Q` 조합으로 `Tab` 입력.**
   - `_RAW`: 홈로우 정지 모드 (오른쪽 검지 안쪽 키로 토글).
 - **Key Position Changes:**
+  - `LA_FUNC` (F1~F12 레이어): **왼쪽 엄지 바깥쪽**으로 이동. 홀드 시 레이어 진입, 탭 시 Alt.
+  - `KC_RALT` (오른쪽 Alt): **오른쪽 엄지 바깥쪽**으로 이동. 단순 Alt 기능만 수행.
   - `TG(_RAW)` (홈로우 정지): **오른쪽 검지 안쪽(8번째 키)**으로 이동 및 모든 레이어 통일.
-  - `KC_RSFT`: **오른쪽 맨 우측 하단** 고정.
 
 ## 📌 TODO
 - [ ] 레이어별 키 배치 최적화 (사용하면서 보정 필요)
