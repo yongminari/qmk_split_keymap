@@ -16,11 +16,11 @@
 Left Side                          | Right Side
 -----------------------------------|------------------------------------
 ESC   Q     W     E     R     T    ENT | DEL   Y     U     I     O     P     BSPC
-LCTL  A(G)  S(A)  D(C)  F(S)  G    TAB | TG(R) H     J(S)  K(C)  L(A)  ;(G)  '
-LSFT  Z(Num)X     C     V(Nav)B        | N(Nav)M     ,     .     /(Sym)RSFT
-            ALT   GUI   TAB            | ENT   SPC(E)Func(L)
+LCTL  A(G)  S(A)  D(C)  F(S)  G(Sym)TAB | TG(R) H     J(S)  K(C)  L(A)  ;(G)  '
+LSFT  Z     X     C     V(Nav)B        | N(Nav)M     ,(Sym).     /     RSFT
+            Num   GUI   TAB            | ENT   SPC(E)RALT
 ```
-*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, SPC(E)=Extra Layer)*
+*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, Num=Number Layer, SPC(E)=Extra Layer, RALT=Right Alt)*
 
 ### 2. Navigation Layer (`_NAV`)
 방향키와 마우스 제어 레이어입니다. (`V` 또는 `N` 키 홀드)
@@ -35,7 +35,7 @@ Left Side                          | Right Side
 ```
 
 ### 3. Number Pad (`_NUM`)
-숫자 입력 레이어입니다. (`Z` 키 홀드)
+숫자 입력 레이어입니다. (**왼쪽 엄지 바깥쪽** 키 홀드)
 
 ```text
 Left Side                          | Right Side
@@ -47,7 +47,7 @@ Left Side                          | Right Side
 ```
 
 ### 4. Symbols (`_SYM`)
-특수 기호 레이어입니다. (`G` 또는 `/` 키 홀드)
+특수 기호 레이어입니다. (`G` 또는 `,` 키 홀드)
 
 ```text
 Left Side                          | Right Side
@@ -75,12 +75,12 @@ Left Side                          | Right Side
 ### 1. Build
 `qmk_firmware` 폴더 내의 해당 위치로 파일을 동기화한 후 빌드를 수행합니다.
 ```bash
-# 파일 동기화
-cp -r keymaps/yongminari ~/qmk_firmware/keyboards/crkbd/keymaps/
+# 파일 동기화 (심볼릭 링크가 설정되어 있지 않은 경우)
+ln -s /home/yongminari/workspace/qmk_split_keymap/keymaps/yongminari /home/yongminari/qmk_firmware/keyboards/crkbd/keymaps/yongminari
 
 # 빌드 실행
 cd ~/qmk_firmware
-qmk compile -kb crkbd/rev4_1/standard -km yongminari
+qmk compile -kb crkbd/rev4_1/standard -km yongminari --clean
 ```
 
 ### 2. Flash (Using `dd`)
@@ -90,24 +90,24 @@ qmk compile -kb crkbd/rev4_1/standard -km yongminari
 
 ```bash
 # 장치 이름(sdX1)은 lsblk로 확인 필수
-sudo dd if=~/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of=/dev/sdX1 conv=fdatasync status=progress
+sudo dd if=/home/yongminari/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of=/dev/sdX1 conv=fdatasync status=progress
 ```
 
 ## ⌨️ Keymap Features
 - **Home Row Mods (GACS):** `A,S,D,F / J,K,L,;` 키에 GUI, Alt, Ctrl, Shift 적용.
-- **Tapping Term:** 200ms.
+- **Tapping Term:** 180ms 일괄 적용.
 - **Tapping Optimizations:** 오작동 방지를 위해 `HOLD_ON_OTHER_KEY_PRESS` 및 `PERMISSIVE_HOLD` 제거.
 - **Layers:**
   - `_DEFAULT`: 기본 알파 및 Home Row Mods, `G` 키 홀드 시 `_SYM` 레이어 진입.
-  - `_NAV`: 방향키, 마우스 제어.
-  - `_NUM`: Kanata 스타일 숫자 패드.
-  - `_SYM`: Kanata 스타일 특수 기호.
+  - `_NAV`: 방향키, 마우스 제어. (`V`, `N` 키 홀드)
+  - `_NUM`: Kanata 스타일 숫자 패드. **왼쪽 엄지 바깥쪽** 키로 진입.
+  - `_SYM`: Kanata 스타일 특수 기호. (`G`, `,` 키 홀드)
   - `_EXTRA`: **Space 홀드 시 활성화. `Space + Q` 조합으로 `Tab` 입력.**
   - `_RAW`: 홈로우 정지 모드 (오른쪽 검지 안쪽 키로 토글).
 - **Key Position Changes:**
-  - `LA_FUNC` (F1~F12 레이어): **왼쪽 엄지 바깥쪽**으로 이동. 홀드 시 레이어 진입, 탭 시 Alt.
+  - `MO(_NUM)` (숫자 레이어): **왼쪽 엄지 바깥쪽**으로 이동.
   - `KC_RALT` (오른쪽 Alt): **오른쪽 엄지 바깥쪽**으로 이동. 단순 Alt 기능만 수행.
-  - `TG(_RAW)` (홈로우 정지): **오른쪽 검지 안쪽(8번째 키)**으로 이동 및 모든 레이어 통일.
+  - `Z`, `C`, `/` 키: 레이어/모디파이어 기능을 제거하고 일반 키로 복구하여 타이핑 편의성 향상.
 
 ## 📌 TODO
 - [ ] 레이어별 키 배치 최적화 (사용하면서 보정 필요)

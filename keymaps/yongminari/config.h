@@ -1,12 +1,11 @@
 #pragma once
 
 /* Tapping term (Kanata에서 220ms를 사용하셨으므로 동일하게 설정) */
-#define TAPPING_TERM 200
+#define TAPPING_TERM 180
 
 /* Home Row Mods 최적화 설정 */
 #define QUICK_TAP_TERM 175
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM_PER_KEY
 
 /* Combo 설정 */
 #define COMBO_TERM 200

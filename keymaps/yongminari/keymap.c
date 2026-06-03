@@ -36,7 +36,6 @@ enum layers {
 
 /* Special Aliases */
 #define ESC_CTL CTL_T(KC_ESC)
-#define LA_FUNC LT(_FUNC, KC_LALT)
 
 /* Mouse Key Aliases */
 #define MS_L    MS_LEFT
@@ -61,9 +60,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   G_SYM,   KC_TAB,    TG(_RAW),KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
-        KC_LSFT, Z_SFT,   KC_X,    C_NUM,   V_NAV,   KC_B,               N_NAV,   KC_M,    COMM_SYM, KC_DOT,  SL_SFT,  KC_RSFT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    V_NAV,   KC_B,               N_NAV,   KC_M,    COMM_SYM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
-        LA_FUNC, KC_LGUI, KC_TAB,                                        KC_ENT,  SPC_EXT, KC_RALT
+        MO(_NUM), KC_LGUI, KC_TAB,                                        KC_ENT,  SPC_EXT, KC_RALT
     ),
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
@@ -126,19 +125,3 @@ bool rgb_matrix_indicators_user(void) {
     return true;
 }
 #endif
-
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case A_MET:
-        case S_ALT:
-        case D_CTL:
-        case F_SFT:
-        case J_SFT:
-        case K_CTL:
-        case L_ALT:
-        case CLN_MET:
-            return 250;
-        default:
-            return TAPPING_TERM;
-    }
-}
