@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 2: Left & Right (6 keys each) */
         KC_LSFT, KC_Z,    KC_X,    KC_C,    V_NAV,   KC_B,               N_NAV,   KC_M,    COMM_SYM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
-        MO(_NUM), KC_LGUI, KC_TAB,                                        KC_ENT,  SPC_EXT, KC_RALT
+        MO(_NUM), MO(_FUNC), KC_TAB,                                        KC_ENT,  SPC_EXT, KC_RALT
     ),
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(

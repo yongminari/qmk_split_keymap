@@ -18,9 +18,9 @@ Left Side                          | Right Side
 ESC   Q     W     E     R     T    ENT | DEL   Y     U     I     O     P     BSPC
 LCTL  A(G)  S(A)  D(C)  F(S)  G(Sym)TAB | TG(R) H     J(S)  K(C)  L(A)  ;(G)  '
 LSFT  Z     X     C     V(Nav)B        | N(Nav)M     ,(Sym).     /     RSFT
-            Num   GUI   TAB            | ENT   SPC(E)RALT
+            Num   Func  TAB            | ENT   SPC(E)RALT
 ```
-*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, Num=Number Layer, SPC(E)=Extra Layer, RALT=Right Alt)*
+*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, Num=Number Layer, Func=Function Layer, SPC(E)=Extra Layer, RALT=Right Alt)*
 
 ### 2. Navigation Layer (`_NAV`)
 방향키와 마우스 제어 레이어입니다. (`V` 또는 `N` 키 홀드)
@@ -106,6 +106,7 @@ sudo dd if=/home/yongminari/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of
   - `_RAW`: 홈로우 정지 모드 (오른쪽 검지 안쪽 키로 토글).
 - **Key Position Changes:**
   - `MO(_NUM)` (숫자 레이어): **왼쪽 엄지 바깥쪽**으로 이동.
+  - `MO(_FUNC)` (기능 레이어): **왼쪽 엄지 중간**으로 이동.
   - `KC_RALT` (오른쪽 Alt): **오른쪽 엄지 바깥쪽**으로 이동. 단순 Alt 기능만 수행.
   - `Z`, `C`, `/` 키: 레이어/모디파이어 기능을 제거하고 일반 키로 복구하여 타이핑 편의성 향상.
 
