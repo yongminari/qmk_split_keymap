@@ -25,8 +25,12 @@ enum layers {
 /* Layer Tap Aliases on Alphas */
 #define V_NAV   LT(_NAV, KC_V)
 #define N_NAV   LT(_NAV, KC_N)
-#define Z_NUM   LT(_NUM, KC_Z)
+#define Z_SFT   MT(MOD_LSFT, KC_Z)
+#define SL_SFT  MT(MOD_RSFT, KC_SLSH)
+#define C_NUM   LT(_NUM, KC_C)
+#define COMM_SYM LT(_SYM, KC_COMM)
 #define G_SYM   LT(_SYM, KC_G)
+#define Z_NUM   LT(_NUM, KC_Z)
 #define SL_SYM  LT(_SYM, KC_SLSH)
 #define SPC_EXT LT(_EXTRA, KC_SPC)
 
@@ -57,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   G_SYM,   KC_TAB,    TG(_RAW),KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
-        KC_LSFT, Z_NUM,   KC_X,    KC_C,    V_NAV,   KC_B,               N_NAV,   KC_M,    KC_COMM, KC_DOT,  SL_SYM,  KC_RSFT,
+        KC_LSFT, Z_SFT,   KC_X,    C_NUM,   V_NAV,   KC_B,               N_NAV,   KC_M,    COMM_SYM, KC_DOT,  SL_SFT,  KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
         LA_FUNC, KC_LGUI, KC_TAB,                                        KC_ENT,  SPC_EXT, KC_RALT
     ),
@@ -76,8 +80,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUM] = LAYOUT_split_3x6_3_ex2(
         _______, _______, _______, _______, _______, _______, _______,   _______, KC_SLSH, KC_7,    KC_8,    KC_9,    KC_MINS, _______,
         _______, _______, _______, _______, _______, _______, _______,   _______, KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
-        _______, _______, _______, _______, _______, _______,               KC_0,    KC_1,    KC_2,    KC_3,    KC_DOT,  _______,
-        _______, _______, _______,                                        _______, _______, _______
+        _______, _______, _______, _______, _______, _______,               _______, KC_1,    KC_2,    KC_3,    KC_DOT,  _______,
+        _______, _______, _______,                                        _______, KC_0,    _______
     ),
 
     [_SYM] = LAYOUT_split_3x6_3_ex2(
