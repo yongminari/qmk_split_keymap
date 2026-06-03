@@ -34,6 +34,22 @@ enum layers {
 #define ESC_CTL CTL_T(KC_ESC)
 #define LA_FUNC LT(_FUNC, KC_LALT)
 
+/* Mouse Key Aliases */
+#define MS_L    MS_LEFT
+#define MS_R    MS_RGHT
+#define MS_U    MS_UP
+#define MS_D    MS_DOWN
+#define MS_WH_L MS_WHLL
+#define MS_WH_R MS_WHLR
+#define MS_WH_U MS_WHLU
+#define MS_WH_D MS_WHLD
+#define MS_BTN1 MS_BTN1
+#define MS_BTN2 MS_BTN2
+#define MS_BTN3 MS_BTN3
+#define MS_ACL0 MS_ACL0
+#define MS_ACL1 MS_ACL1
+#define MS_ACL2 MS_ACL2
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
@@ -47,9 +63,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
-        _______, _______, MS_UP,   _______, _______, _______, _______,   _______, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
-        _______, MS_LEFT, MS_DOWN, MS_RGHT, _______, MS_WHLU, _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-        _______, _______, MS_WHLD, _______, _______, _______,               _______, KC_BSPC, KC_DEL,  _______, _______, _______,
+        /* Row 0: Left & Right */
+        _______, MS_ACL0, MS_WH_L, MS_WH_D, MS_WH_U, MS_WH_R, _______,   _______, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
+        /* Row 1: Left & Right */
+        _______, MS_ACL2, MS_L,    MS_D,    MS_U,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+        /* Row 2: Left & Right */
+        _______, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               _______, KC_BSPC, KC_DEL,  _______, _______, _______,
+        /* Thumb Row: Left & Right */
         _______, _______, _______,                                        _______, _______, _______
     ),
 
