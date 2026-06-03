@@ -6,6 +6,7 @@
 /* Home Row Mods 최적화 설정 */
 #define QUICK_TAP_TERM 175
 #define TAPPING_FORCE_HOLD
+#define TAPPING_TERM_PER_KEY
 
 /* Combo 설정 */
 #define COMBO_TERM 200

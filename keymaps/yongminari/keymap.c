@@ -126,3 +126,19 @@ bool rgb_matrix_indicators_user(void) {
     return true;
 }
 #endif
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case A_MET:
+        case S_ALT:
+        case D_CTL:
+        case F_SFT:
+        case J_SFT:
+        case K_CTL:
+        case L_ALT:
+        case CLN_MET:
+            return 250;
+        default:
+            return TAPPING_TERM;
+    }
+}
