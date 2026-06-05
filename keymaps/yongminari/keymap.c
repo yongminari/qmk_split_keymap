@@ -23,15 +23,10 @@ enum layers {
 #define CLN_MET MT(MOD_RGUI, KC_SCLN)
 
 /* Layer Tap Aliases on Alphas */
-#define V_NAV   LT(_NAV, KC_V)
+#define Z_FUNC  LT(_FUNC, KC_Z)
+#define RALT_SYM LT(_SYM, KC_RALT)
 #define N_NAV   LT(_NAV, KC_N)
-#define Z_SFT   MT(MOD_LSFT, KC_Z)
-#define SL_SFT  MT(MOD_RSFT, KC_SLSH)
-#define C_NUM   LT(_NUM, KC_C)
-#define COMM_SYM LT(_SYM, KC_COMM)
 #define G_SYM   LT(_SYM, KC_G)
-#define Z_NUM   LT(_NUM, KC_Z)
-#define SL_SYM  LT(_SYM, KC_SLSH)
 #define SPC_EXT LT(_EXTRA, KC_SPC)
 
 /* Special Aliases */
@@ -60,9 +55,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   G_SYM,   KC_TAB,    TG(_RAW),KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    V_NAV,   KC_B,               N_NAV,   KC_M,    COMM_SYM, KC_DOT,  KC_SLSH, KC_RSFT,
+        KC_LSFT, Z_FUNC,  KC_X,    KC_C,    KC_V,    KC_B,               N_NAV,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
-        MO(_NUM), MO(_FUNC), KC_TAB,                                        KC_ENT,  SPC_EXT, KC_RALT
+        MO(_NUM), MO(_NAV), KC_TAB,                                         KC_ENT,  SPC_EXT, RALT_SYM
     ),
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
