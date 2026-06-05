@@ -7,8 +7,7 @@ enum layers {
     _NUM,
     _SYM,
     _FUNC,
-    _RAW,
-    _EXTRA
+    _RAW
 };
 
 /* Home Row Mods Aliases */
@@ -23,11 +22,10 @@ enum layers {
 #define CLN_MET MT(MOD_RGUI, KC_SCLN)
 
 /* Layer Tap Aliases on Alphas */
-#define Z_FUNC  LT(_FUNC, KC_Z)
+#define SPC_FUNC LT(_FUNC, KC_SPC)
 #define RALT_SYM LT(_SYM, KC_RALT)
 #define N_NAV   LT(_NAV, KC_N)
 #define G_SYM   LT(_SYM, KC_G)
-#define SPC_EXT LT(_EXTRA, KC_SPC)
 
 /* Special Aliases */
 #define ESC_CTL CTL_T(KC_ESC)
@@ -55,9 +53,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   G_SYM,   KC_TAB,    TG(_RAW),KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
-        KC_LSFT, Z_FUNC,  KC_X,    KC_C,    KC_V,    KC_B,               N_NAV,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               N_NAV,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
-        MO(_NUM), MO(_NAV), KC_TAB,                                         KC_ENT,  SPC_EXT, RALT_SYM
+        MO(_NUM), MO(_NAV), KC_TAB,                                         KC_ENT,  SPC_FUNC, RALT_SYM
     ),
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
@@ -86,9 +84,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUNC] = LAYOUT_split_3x6_3_ex2(
-        _______, _______, _______, _______, _______, _______, _______,   _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______,
+        /* Row 0: Left & Right */
+        _______, KC_TAB,  _______, _______, _______, _______, _______,   _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______,
+        /* Row 1: Left & Right */
         _______, _______, _______, _______, _______, _______, _______,   _______, KC_F11,  KC_F4,   KC_F5,   KC_F6,   _______, _______,
+        /* Row 2: Left & Right (6 keys each) */
         _______, _______, _______, _______, _______, _______,               KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______,
+        /* Thumb Row: Left & Right (3 keys each) */
         _______, _______, _______,                                        _______, _______, _______
     ),
 
@@ -97,13 +99,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TAB,    TG(_RAW),KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         KC_LALT, KC_LGUI, KC_TAB,                                        KC_ENT,  KC_SPC,  KC_RALT
-    ),
-
-    [_EXTRA] = LAYOUT_split_3x6_3_ex2(
-        _______, KC_TAB,  _______, _______, _______, _______, _______,   _______, RM_TOGG, RM_NEXT, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,   _______, RM_HUEU, RM_SATU, RM_VALU, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______,               RM_HUED, RM_SATD, RM_VALD, _______, _______, _______,
-        _______, _______, _______,                                        _______, _______, _______
     )
 };
 

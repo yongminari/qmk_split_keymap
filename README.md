@@ -10,17 +10,17 @@
 ## ⌨️ Visual Layout
 
 ### 1. Default Layer (`_DEFAULT`)
-기본 타이핑 레이어입니다. 홀드 시 모디파이어(GACS) 또는 레이어 전환으로 동작합니다. 콤마(`,`)와 `V` 키의 레이어 모디파이어 기능을 빼서 일반 키로 환원하여 타이핑 반응 속도를 최적화했습니다.
+기본 타이핑 레이어입니다. 홀드 시 모디파이어(GACS) 또는 레이어 전환으로 동작합니다. 콤마(`,`), `V` 키, `Z` 키의 레이어 모디파이어 기능을 완전히 빼고 일반 키로 환원하여 타이핑 반응 속도를 최적화했습니다.
 
 ```text
 Left Side                          | Right Side
 -----------------------------------|------------------------------------
 ESC   Q     W     E     R     T    ENT | DEL   Y     U     I     O     P     BSPC
 LCTL  A(G)  S(A)  D(C)  F(S)  G(Sym)TAB | TG(R) H     J(S)  K(C)  L(A)  ;(G)  '
-LSFT  Z(F)  X     C     V     B        | N(Nav)M     ,     .     /     RSFT
-            Num   Nav   TAB            | ENT   SPC(E)RALT(Sym)
+LSFT  Z     X     C     V     B        | N(Nav)M     ,     .     /     RSFT
+            Num   Nav   TAB            | ENT   SPC(F)RALT(Sym)
 ```
-*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, Num=Number Layer, Nav=Navigation Layer, Z(F)=Z hold for Func Layer, SPC(E)=Extra Layer, RALT(Sym)=RALT hold for Symbols, TAB=Tab)*
+*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, Num=Number Layer, Nav=Navigation Layer, SPC(F)=Func Layer, RALT(Sym)=RALT hold for Symbols, TAB=Tab)*
 
 ### 2. Navigation Layer (`_NAV`)
 방향키와 마우스 제어 레이어입니다. (**왼쪽 엄지 중간** 키 `Nav` 홀드 또는 `N` 키 홀드 시 진입)
@@ -61,31 +61,19 @@ Left Side                          | Right Side
 ```
 
 ### 5. Function Layer (`_FUNC`)
-키보드 F1 ~ F12 펑션키 입력 레이어입니다. (**`Z` 키 홀드** 시 진입)
+키보드 F1 ~ F12 펑션키 및 Tab 입력 레이어입니다. (**오른쪽 엄지 중간 Space (SPC_FUNC)** 키 홀드 시 진입)
 
 ```text
 Left Side                          | Right Side
 -----------------------------------|------------------------------------
--     -     -     -     -     -     -  | -     F12   F7    F8    F9    -     -
+-     TAB   -     -     -     -     -  | -     F12   F7    F8    F9    -     -
 -     -     -     -     -     -     -  | -     F11   F4    F5    F6    -     -
 -     -     -     -     -     -        | F10   F1    F2    F3    -     -
             -     -     -              | -     -     -
 ```
+*(TAB=왼쪽 Space 키를 누른 채 Q 키를 눌러 입력합니다.)*
 
-### 6. Extra Layer (`_EXTRA`)
-RGB Matrix 제어 및 특수 키 입력 레이어입니다. (**오른쪽 엄지 중간 Space 키** 홀드 시 진입)
-
-```text
-Left Side                          | Right Side
------------------------------------|------------------------------------
--     TAB   -     -     -     -     -  | -     TOGG  NEXT  -     -     -     -
--     -     -     -     -     -     -  | -     HUE+  SAT+  VAL+  -     -     -
--     -     -     -     -     -        | HUE-  SAT-  VAL-  -     -     -
-            -     -     -              | -     -     -
-```
-*(TAB=Q 위치에서 Tab 입력, TOGG=RGB Matrix On/Off, NEXT=RGB Matrix 모드 전환, HUE+/HUE-=색상 증가/감소, SAT+/SAT-=채도 증가/감소, VAL+/VAL-=밝기 증가/감소)*
-
-### 7. RAW Layer (`_RAW`)
+### 6. RAW Layer (`_RAW`)
 홈로우 모드가 일시 정지된 일반 키보드 레이어입니다. 게임 실행이나 빠른 연속 타이핑 등 단일 키 입력 처리가 요구될 때 유용합니다. (`TG(_RAW)` 키로 토글하여 활성화/비활성화)
 
 ```text
@@ -142,12 +130,11 @@ ln -s /home/yongminari/Workspace/sources/repos/qmk_custom/keymaps/yongminari ~/q
   - `_NAV`: 방향키, 마우스 제어. **왼쪽 엄지 중간 키**(`MO(_NAV)`) 또는 `N` 키 홀드로 진입.
   - `_NUM`: Kanata 스타일 숫자 패드. **왼쪽 엄지 바깥쪽** 키(`MO(_NUM)`)로 진입.
   - `_SYM`: Kanata 스타일 특수 기호. `G` 키 홀드 또는 **오른쪽 엄지 바깥쪽 키**(`LT(_SYM, KC_RALT)`) 홀드로 진입.
-  - `_FUNC`: F1 ~ F12 기능 키 입력. **`Z` 키 홀드**(`LT(_FUNC, KC_Z)`)로 진입.
-  - `_EXTRA`: **Space 홀드 시 활성화. `Space + Q` 조합으로 `Tab` 입력 및 RGB Matrix 효과 제어.**
+  - `_FUNC`: F1 ~ F12 기능 키 및 Tab 입력. **오른쪽 엄지 중간 Space 키**(`LT(_FUNC, KC_SPC)`) 홀드 시 진입.
   - `_RAW`: 홈로우 정지 모드 (오른쪽 검지 안쪽 키로 토글).
 - **Key Position Changes for Optimization (타이핑 딜레이 최소화):**
-  - **`V` 및 `,` (쉼표) 키**: 레이어 모디파이어 기능을 완전히 분리하여 일반 키로 지정, 타이핑 시 오작동과 딜레이 원천 방지.
-  - **`Z` 키**: `LT(_FUNC, KC_Z)`로 설정하여 펑션(`_FUNC`) 레이어 진입 키로 사용.
+  - **`V`, `,` (쉼표), `Z` 키**: 레이어 모디파이어 기능을 완전히 배제하여 일반 단일 키로 지정, 타이핑 시 오작동과 딜레이 원천 방지.
+  - **오른쪽 엄지 중간 (Space)**: `LT(_FUNC, KC_SPC)`로 설정하여 탭 시 Space 입력, 홀드 시 `_FUNC` 및 `Tab` 레이어 진입으로 기능 통합.
   - **오른쪽 엄지 바깥쪽 (`RALT`)**: `LT(_SYM, KC_RALT)`로 설정하여 탭 시 한영 전환, 홀드 시 `_SYM` 레이어 진입으로 효율성 극대화.
   - **왼쪽 엄지 중간**: `MO(_NAV)`로 설정하여 방향키/마우스 레이어로 직관적 진입.
   - **왼쪽 엄지 안쪽**: 당분간 `KC_TAB` 키 유지.
