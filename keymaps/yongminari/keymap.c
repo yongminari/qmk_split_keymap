@@ -47,9 +47,9 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_ENT,    KC_DEL,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,   KC_DEL,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         /* Row 1: Left & Right */
-        KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   KC_G,    KC_TAB,    TG(_RAW),KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
+        KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   KC_G,    _______,   TG(_RAW),KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
@@ -69,22 +69,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NUM] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_LCBR,   _______, KC_SLSH, KC_7,    KC_8,    KC_9,    KC_MINS, _______,
+        KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______,   _______, KC_SLSH, KC_7,    KC_8,    KC_9,    KC_MINS, _______,
         /* Row 1: Left & Right */
-        KC_LBRC, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  KC_RCBR,   _______, KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
+        _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  _______,   _______, KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
         /* Row 2: Left & Right (6 keys each) */
-        KC_RBRC, KC_TILD, KC_UNDS, KC_PLUS, KC_PIPE, KC_BSLS,               _______, KC_1,    KC_2,    KC_3,    KC_DOT,  _______,
+        KC_LSFT, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               _______, KC_1,    KC_2,    KC_3,    KC_DOT,  _______,
         /* Thumb Row: Left & Right (3 keys each) */
-        KC_LPRN, KC_RPRN, _______,                                        _______, KC_0,    _______
+        _______, _______, _______,                                        _______, KC_0,    _______
     ),
 
     [_FUNC] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_TAB,  _______, _______, _______, _______, _______,   _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______,
+        _______, KC_TAB,  KC_F9,   KC_F8,   KC_F7,   KC_F12,  _______,   _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______,
         /* Row 1: Left & Right */
-        _______, _______, _______, _______, _______, _______, _______,   _______, KC_F11,  KC_F4,   KC_F5,   KC_F6,   _______, _______,
+        _______, _______, KC_F6,   KC_F5,   KC_F4,   KC_F11,  _______,   _______, KC_F11,  KC_F4,   KC_F5,   KC_F6,   _______, _______,
         /* Row 2: Left & Right (6 keys each) */
-        _______, _______, _______, _______, _______, _______,               KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______,
+        _______, _______, KC_F3,   KC_F2,   KC_F1,   KC_F10,               KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______,
         /* Thumb Row: Left & Right (3 keys each) */
         _______, _______, _______,                                        _______, _______, _______
     ),
@@ -96,6 +96,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LALT, KC_LGUI, KC_TAB,                                        KC_ENT,  KC_SPC,  KC_RALT
     )
 };
+
+#ifdef CAPS_WORD_ENABLE
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static uint16_t shift_tap_timer = 0;
+    
+    // 외각 핑크색 전용 Shift 키(KC_LSFT, KC_RSFT)의 더블탭을 감지하여 Caps Word 활성화
+    // 홈로우 Shift(F_SFT, J_SFT)는 한글 연타(예: 'ㄹㄹ') 시 의도치 않은 작동을 막기 위해 제외
+    if (keycode == KC_LSFT || keycode == KC_RSFT) {
+        if (record->event.pressed) {
+            if (timer_elapsed(shift_tap_timer) < TAPPING_TERM) {
+                caps_word_on();
+                shift_tap_timer = 0;
+                return false; // Shift 탭 출력을 억제하여 Caps Word 상태로 즉시 돌입
+            }
+            shift_tap_timer = timer_read();
+        }
+    }
+    return true;
+}
+#endif
 
 #ifdef RGB_MATRIX_ENABLE
 bool rgb_matrix_indicators_user(void) {
@@ -110,3 +130,4 @@ bool rgb_matrix_indicators_user(void) {
     return true;
 }
 #endif
+
