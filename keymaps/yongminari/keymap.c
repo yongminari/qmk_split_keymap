@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 2: Left & Right (6 keys each) */
         KC_LSFT, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               _______, KC_1,    KC_2,    KC_3,    KC_DOT,  _______,
         /* Thumb Row: Left & Right (3 keys each) */
-        _______, _______, _______,                                        _______, KC_0,    _______
+        KC_UNDS, KC_PLUS, KC_PIPE,                                        _______, KC_0,    _______
     ),
 
     [_FUNC] = LAYOUT_split_3x6_3_ex2(
