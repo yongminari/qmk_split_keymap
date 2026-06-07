@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NUM] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______,   _______, KC_SLSH, KC_7,    KC_8,    KC_9,    KC_MINS, _______,
+        KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______,   _______, KC_SLSH, KC_7,    KC_8,    KC_9,    KC_MINS, KC_TILD,
         /* Row 1: Left & Right */
         _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  _______,   _______, KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
         /* Row 2: Left & Right (6 keys each) */
