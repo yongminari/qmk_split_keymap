@@ -58,11 +58,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, MS_ACL0, MS_WH_L, MS_WH_D, MS_WH_U, MS_WH_R, _______,   _______, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
+        _______, KC_TAB,  MS_WH_L, MS_WH_D, MS_WH_U, MS_WH_R, _______,   _______, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
         /* Row 1: Left & Right */
-        _______, MS_ACL2, MS_L,    MS_D,    MS_U,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+        MS_ACL0, _______, MS_L,    MS_D,    MS_U,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
         /* Row 2: Left & Right */
-        _______, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               _______, KC_BSPC, KC_DEL,  _______, _______, _______,
+        MS_ACL2, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               _______, KC_BSPC, KC_DEL,  _______, _______, _______,
         /* Thumb Row: Left & Right */
         _______, _______, _______,                                        _______, _______, _______
     ),
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FUNC] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_TAB,  KC_F9,   KC_F8,   KC_F7,   KC_F12,  _______,   _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______,
+        _______, _______, KC_F9,   KC_F8,   KC_F7,   KC_F12,  _______,   _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______,
         /* Row 1: Left & Right */
         _______, _______, KC_F6,   KC_F5,   KC_F4,   KC_F11,  _______,   _______, KC_F11,  KC_F4,   KC_F5,   KC_F6,   _______, _______,
         /* Row 2: Left & Right (6 keys each) */
