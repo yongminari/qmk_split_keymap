@@ -131,3 +131,24 @@ bool rgb_matrix_indicators_user(void) {
 }
 #endif
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case A_MET:
+        case S_ALT:
+        case D_CTL:
+        case F_SFT:
+        case J_SFT:
+        case K_CTL:
+        case L_ALT:
+        case CLN_MET:
+            return 175; // 홈로우 모디파이어 키: 175ms (더 빠르고 민첩한 반응)
+        case TAB_FUNC:
+        case ENT_FUNC:
+        case SPC_NAV:
+            return 200; // 엄지 레이어-탭 키: 200ms (실수 유발 방지 및 여유로운 입력)
+        default:
+            return TAPPING_TERM; // 기본값: 180ms
+    }
+}
+
+
