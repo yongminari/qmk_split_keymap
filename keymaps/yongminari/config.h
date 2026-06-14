@@ -3,10 +3,16 @@
 /* Tapping term (Kanata에서 220ms를 사용하셨으므로 동일하게 설정) */
 #define TAPPING_TERM 180
 
-/* Home Row Mods 최적화 설정 */
+/* Home Row Mods 최적화 설정 (하이브리드: 선행 유휴시간 + 양손 판정) */
 #define QUICK_TAP_TERM 175
 #define TAPPING_FORCE_HOLD
 #define TAPPING_TERM_PER_KEY
+#define CHORDAL_HOLD
+#define FLOW_TAP_TERM 120
+#define PERMISSIVE_HOLD
+
+
+
 
 
 /* Combo 설정 */

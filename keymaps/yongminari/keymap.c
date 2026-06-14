@@ -151,4 +151,60 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, uint16_t other_keycode, keyrecord_t *other_record) {
+    // 1. 모디파이어 키들끼리의 조합(예: Ctrl + Shift, Super + Alt 등)은 같은 손이더라도 무조건 Hold로 인정합니다.
+    switch (other_keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+        case KC_LCTL: case KC_LSFT: case KC_LALT: case KC_LGUI:
+        case KC_RCTL: case KC_RSFT: case KC_RALT: case KC_RGUI:
+            return true;
+    }
+
+    // 사용자님은 엄격한 인간공학적 크로스(양손) 입력을 실천하고 계시므로,
+    // 알파벳 단축키에 대한 동일 손 구제 예외는 전혀 필요하지 않습니다.
+    // 나머지는 전부 엄격한 양손 판정(CHORDAL_HOLD)을 적용합니다.
+    return get_chordal_hold_default(tap_hold_record, other_record);
+}
+
+bool is_flow_tap_key(uint16_t keycode) {
+    // 레이어 탭 키(SPC_NAV, TAB_FUNC, ENT_FUNC 등)는 고속 타이핑 도중에도 즉시 레이어로 진입할 수 있도록 
+    // Flow Tap(선행 유휴 시간) 대상에서 완전히 제외시켜 지연 없이 진입하도록 합니다.
+    switch (keycode) {
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            return false;
+    }
+
+    // 그 외에는 QMK 기본 추출 방식을 사용하여 일반 알파벳 문자와 스페이스바에 대해서만 true를 반환합니다.
+    uint16_t tap_keycode = keycode;
+    switch (keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+            tap_keycode = QK_MOD_TAP_GET_TAP_KEYCODE(keycode);
+            break;
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            tap_keycode = QK_LAYER_TAP_GET_TAP_KEYCODE(keycode);
+            break;
+    }
+
+    switch (tap_keycode) {
+        case KC_SPC:
+        case KC_A ... KC_Z:
+        case KC_DOT:
+        case KC_COMM:
+        case KC_SCLN:
+        case KC_SLSH:
+            return true;
+    }
+    return false;
+}
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
+    switch (keycode) {
+        case F_SFT:
+        case J_SFT:
+            return 85; // Shift 키의 흐름 입력 대기 시간(Flow Tap Term)을 85ms로 단축
+        default:
+            return FLOW_TAP_TERM; // 기본값: 120ms (config.h 정의)
+    }
+}
+
 
