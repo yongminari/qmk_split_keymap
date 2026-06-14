@@ -11,20 +11,20 @@
  
 ### 1. Default Layer (`_DEFAULT`)
 기본 타이핑 레이어입니다. 알파 키들의 타건 속도 족쇄였던 검지 Shift(`F_SFT`, `J_SFT`)를 완전히 일반 키(`KC_F`, `KC_J`)로 원복하여, 초고속 타건 시의 오타와 입력 병목을 원천 봉쇄했습니다. 
-대신 **양쪽 엄지 안쪽 키**에 탭-홀드 Shift를 배정하고, 기존의 `_FUNC` 진입용 모디파이어 키는 **양손 검지 안쪽 홈로우 영역**으로 대칭 이동시켜 접근성을 극한으로 올렸습니다.
+대신 **양쪽 엄지 안쪽 키**에 오판정이 없는 순수한 dedicated Shift 키(`KC_LSFT` / `KC_RSFT`)를 배치하고, 기존의 `_FUNC` 진입용 모디파이어 키와 `Enter`를 결합한 `ENT_FUNC` 키를 **양손 검지 안쪽 홈로우 영역**으로 대칭 이동시켜 입력 속도와 타이핑 안정성을 극한으로 끌어올렸습니다.
  
 ```text
 ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
 │  ESC  │   Q   │   W   │   E   │   R   │   T   │ TG(R) │       │ TG(R) │   Y   │   U   │   I   │   O   │   P   │ BSPC  │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ LCTL  │ A(G)  │ S(A)  │ D(C)  │   F   │   G   │ MO(F) │       │ MO(F) │   H   │   J   │ K(C)  │ L(A)  │ ;(G)  │   '   │
+│ LCTL  │ A(G)  │ S(A)  │ D(C)  │   F   │   G   │ ENT(F)│       │ ENT(F)│   H   │   J   │ K(C)  │ L(A)  │ ;(G)  │   '   │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┘       └───────┼───────┼───────┼───────┼───────┼───────┼───────┤
 │ LSFT  │   Z   │   X   │   C   │   V   │   B   │                       │   N   │   M   │   ,   │   .   │   /   │ RSFT  │
 └───────┴───────┴───────┼───────┼───────┼───────┤                       ├───────┼───────┼───────┼───────┴───────┴───────┘
-                        │  Num  │  Nav  │ TAB(S)│                       │ ENT(S)│ SPC(N)│  Num  │
+                        │  Num  │  Nav  │ LSFT  │                       │ RSFT  │ SPC(N)│  Num  │
                         └───────┴───────┴───────┘                       └───────┴───────┴───────┘
 ```
-*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, MO(F)=Hold for Func Layer, Num=Number & Symbol Layer, Nav=Navigation Layer, TAB(S)=Tab hold for Shift, ENT(S)=Enter hold for Shift, SPC(N)=Space hold for Navi)*
+*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, ENT(F)=Enter hold for Func Layer, Num=Number & Symbol Layer, Nav=Navigation Layer, LSFT/RSFT=Pure Left/Right Shift, SPC(N)=Space hold for Navi)*
  
 ### 2. Navigation Layer (`_NAV`)
 방향키와 마우스 제어 레이어입니다. (**양쪽 엄지 가운데** 키 홀드 시 진입)
@@ -129,21 +129,21 @@ sudo dd if=/home/yongminari/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of
 - **Home Row Mods (GAC):** `A,S,D / K,L,;` 키에 GUI, Alt, Ctrl 적용 (초고속 검지 `F` 및 `J`에서 모디를 완전 탈출시켜 일반 글자로 원복).
 - **Tapping Term:** 180ms 일괄 적용.
 - **Tapping Optimizations:** 오작동 방지를 위해 `HOLD_ON_OTHER_KEY_PRESS_PER_KEY` 제거 및 `PERMISSIVE_HOLD` 적용.
-- **Caps Word 더블탭 기능:** 외각 핑크색 전용 Shift 키(`KC_LSFT` / `KC_RSFT`)를 빠르게 **더블 탭**하여 Caps Word 상태를 즉시 활성화할 수 있습니다.
+- **Caps Word 더블탭 기능:** 외각 핑크색 Shift 키 및 **엄지 순수 Shift 키**(`KC_LSFT` / `KC_RSFT`)를 빠르게 **더블 탭**하여 Caps Word 상태를 즉시 활성화할 수 있습니다.
 - **Layers:**
-  - `_DEFAULT`: 기본 알파, GAC 홈로우 모드, 양손 엄지 Shift 결합 구조.
+  - `_DEFAULT`: 기본 알파, GAC 홈로우 모드, 양손 엄지 순수 Shift 배치 구조.
   - `_NAV`: 방향키, 마우스 제어. **양쪽 엄지 가운데 키**(`MO(_NAV)` / `LT(_NAV, KC_SPC)`) 홀드로 진입.
   - `_NUM`: 통합 숫자 & 특수 기호 레이어. **양쪽 엄지 가장 바깥쪽 키**(`MO(_NUM)`) 홀드로 진입.
   - `_FUNC`: F1 ~ F12 기능 키. **양손 검지 안쪽 홈로우 키**(`MO(_FUNC)`) 홀드로 진입.
   - `_RAW`: 홈로우 정지 모드 (양손 검지 안쪽 최상단 Row 0 키로 토글).
 - **Key Position Changes for Optimization (인체공학 및 타이핑 효율성 극대화):**
-  - **검지 Shift 해방 및 양손 엄지 Shift 이식 (Ergonomic 대전환)**: 타이핑 빈도가 극도로 높은 검지 `F_SFT`와 `J_SFT`를 순수한 문자 `KC_F`, `KC_J`로 원복하여, 타이핑 흐름 시 발생하는 모든 오타 병목을 해결했습니다. 대신 양손 엄지 안쪽의 명당자리에 `TAB_SFT` (탭하면 Tab, 홀드하면 Shift)와 `ENT_SFT` (탭하면 Enter, 홀드하면 Shift)를 배치하여 지연 없는 즉각 반응 Shift를 구축했습니다.
-  - **_FUNC 및 _RAW 레이어 진입 키 대칭 배치**: 엄지에서 방출된 `MO(_FUNC)` 진입용 키를 양손 검지 안쪽 홈로우(`MO(_FUNC)`)에 정교하게 대칭 배치하고, `TG(_RAW)`는 양손 검지 안쪽 Row 0에 나란히 대칭 배치하여 인지 피로를 최소화했습니다.
+  - **엄지 순수 Shift 및 검지 안쪽 Enter 이식 (Ergonomic 최적화의 완성)**: 타이핑 흐름의 오타를 원천적으로 방지하고 Shift 반응을 극대화하기 위해, 양쪽 엄지 안쪽 키를 오판정 확률이 0%인 완전한 **순수 Shift 키 (`KC_LSFT`, `KC_RSFT`)**로 배정했습니다. 대신 기존 엄지에 숨겨져 있어 잘못 눌릴 위험이 컸던 `Enter` 키를 양손 검지 안쪽 홈로우의 명당자리에 **`ENT_FUNC` (`LT(_FUNC, KC_ENT)`)**로 배정하여, 탭하면 Enter가 전송되고 홀드하면 Func 레이어가 활성화되도록 완벽히 개선했습니다.
+  - **_RAW 레이어 진입 키 대칭 배치**: `TG(_RAW)`는 양손 검지 안쪽 Row 0에 정교하게 나란히 대칭 배치하여 인지 피로를 최소화했습니다.
   - **알파 키 딜레이 원복 (`V`, `N`, `G`, `Comma`)**: 모든 알파 키들의 레이어 모디파이어 기능을 완전히 제거하여 일반 키로 지정, 고속 타이핑 시 딜레이와 오작동 원천 방지.
   - **대칭형 엄지 레이아웃 최적화**:
     - **가장 바깥쪽 (Outer)**: `Num/Sym` 통합 모디파이어 (`MO(_NUM)`)
     - **가운데 (Middle)**: `Navi` 모디파이어 (`MO(_NAV)` / `LT(_NAV, KC_SPC)`)
-    - **가장 안쪽 (Inner)**: `Shift` 모디파이어 (`SFT_T(KC_TAB)` / `SFT_T(KC_ENT)`)
+    - **가장 안쪽 (Inner)**: `Shift` 모디파이어 (`KC_LSFT` / `KC_RSFT` - 오판정 제로 순수 Shift)
   - **기호 및 괄호 최적 배치 ("Shift-Pair Standard Optimization")**:
     - `[]`, `()`, `\` 괄호 고속도로: 왼손 아랫줄 `Z, X, C, V, B` 위치에 `[`, `]`, `(`, `)`, `\`를 나란히 배치하여, 기존 12개 기호를 Standard Shift 조합(예: `Shift + [` -> `{`) 단 6개의 키로 완벽하게 대응하고, 손목 and 인지 피로를 최소화했습니다.
     - **``` ` ``` 백틱 및 `~` 물결표 대칭 배치**: `_NUM` 레이어 진입 시 왼쪽 판 가장 바깥쪽 최상단(ESC 자리)에는 ``` ` ``` (백틱)을, 오른쪽 판 가장 바깥쪽 최상단(Backspace 자리)에는 `~` (물결표, `KC_TILD`)를 대칭 배치하여 직관성을 높였습니다.

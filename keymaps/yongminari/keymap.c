@@ -52,11 +52,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 0: Left & Right */
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(_RAW),  TG(_RAW),KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         /* Row 1: Left & Right */
-        KC_LCTL, A_MET,   S_ALT,   D_CTL,   KC_F,    KC_G,    MO(_FUNC), MO(_FUNC),KC_H,   KC_J,    K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
+        KC_LCTL, A_MET,   S_ALT,   D_CTL,   KC_F,    KC_G,    ENT_FUNC,  ENT_FUNC,KC_H,   KC_J,    K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
-        MO(_NUM), MO(_NAV), TAB_SFT,                                       ENT_SFT, SPC_NAV, MO(_NUM)
+        MO(_NUM), MO(_NAV), KC_LSFT,                                       KC_RSFT, SPC_NAV, MO(_NUM)
     ),
 
 
@@ -167,6 +167,12 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, u
             return true;
     }
 
+    // 2. 엄지 탭-홀드 Shift 키(TAB_SFT, ENT_SFT)는 동일 손의 알파벳 및 기호와 조합될 때도 즉각 Shift(Hold)로 확정시킵니다.
+    // (예: 오른손 엄지 ENT_SFT를 홀드하면서 오른손 알파벳을 칠 때 지연이 발생하거나 Enter가 입력되는 현상 방지)
+    if (tap_hold_keycode == TAB_SFT || tap_hold_keycode == ENT_SFT) {
+        return true;
+    }
+
     // 사용자님은 엄격한 인간공학적 크로스(양손) 입력을 실천하고 계시므로,
     // 알파벳 단축키에 대한 동일 손 구제 예외는 전혀 필요하지 않습니다.
     // 나머지는 전부 엄격한 양손 판정(CHORDAL_HOLD)을 적용합니다.
@@ -210,6 +216,16 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_
             return 85; // Shift 키의 흐름 입력 대기 시간(Flow Tap Term)을 85ms로 단축
         default:
             return FLOW_TAP_TERM; // 기본값: 120ms (config.h 정의)
+    }
+}
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case TAB_SFT:
+        case ENT_SFT:
+            return 0; // 엄지 Shift 키들은 연타 시 단순 탭(Tab/Enter) 연속 입력으로 작동하지 않고 항상 무조건 Shift(Hold)로 즉시 활성화
+        default:
+            return QUICK_TAP_TERM; // 기본값 (175ms)
     }
 }
 
