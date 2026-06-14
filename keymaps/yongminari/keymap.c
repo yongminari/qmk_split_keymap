@@ -24,6 +24,9 @@ enum layers {
 #define TAB_FUNC LT(_FUNC, KC_TAB)
 #define ENT_FUNC LT(_FUNC, KC_ENT)
 #define SPC_NAV  LT(_NAV, KC_SPC)
+#define TAB_SFT  SFT_T(KC_TAB)
+#define ENT_SFT  SFT_T(KC_ENT)
+
 
 /* Special Aliases */
 #define ESC_CTL CTL_T(KC_ESC)
@@ -47,14 +50,15 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,   KC_DEL,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(_RAW),  TG(_RAW),KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         /* Row 1: Left & Right */
-        KC_LCTL, A_MET,   S_ALT,   D_CTL,   F_SFT,   KC_G,    _______,   TG(_RAW),KC_H,    J_SFT,   K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
+        KC_LCTL, A_MET,   S_ALT,   D_CTL,   KC_F,    KC_G,    MO(_FUNC), MO(_FUNC),KC_H,   KC_J,    K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
-        MO(_NUM), MO(_NAV), TAB_FUNC,                                       ENT_FUNC, SPC_NAV, MO(_NUM)
+        MO(_NUM), MO(_NAV), TAB_SFT,                                       ENT_SFT, SPC_NAV, MO(_NUM)
     ),
+
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
