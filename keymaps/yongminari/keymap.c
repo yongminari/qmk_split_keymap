@@ -50,7 +50,7 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(_RAW),  TG(_RAW),KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_TAB,    KC_TAB,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         /* Row 1: Left & Right */
         KC_LCTL, A_MET,   S_ALT,   D_CTL,   KC_F,    KC_G,    ENT_FUNC,  ENT_FUNC,KC_H,   KC_J,    K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_TAB,  MS_WH_L, MS_WH_D, MS_WH_U, MS_WH_R, _______,   _______, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
+        _______, KC_TAB,  MS_WH_L, MS_WH_D, MS_WH_U, MS_WH_R, TG(_RAW),  TG(_RAW), KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
         /* Row 1: Left & Right */
         MS_ACL0, _______, MS_L,    MS_D,    MS_U,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
         /* Row 2: Left & Right */

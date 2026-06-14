@@ -15,7 +15,7 @@
  
 ```text
 ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-│  ESC  │   Q   │   W   │   E   │   R   │   T   │ TG(R) │       │ TG(R) │   Y   │   U   │   I   │   O   │   P   │ BSPC  │
+│  ESC  │   Q   │   W   │   E   │   R   │   T   │  TAB  │       │  TAB  │   Y   │   U   │   I   │   O   │   P   │ BSPC  │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┼───────┤
 │ LCTL  │ A(G)  │ S(A)  │ D(C)  │   F   │   G   │ ENT(F)│       │ ENT(F)│   H   │   J   │ K(C)  │ L(A)  │ ;(G)  │   '   │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┘       └───────┼───────┼───────┼───────┼───────┼───────┼───────┤
@@ -24,14 +24,14 @@
                         │  Num  │  Nav  │ LSFT  │                       │ RSFT  │ SPC(N)│  Num  │
                         └───────┴───────┴───────┘                       └───────┴───────┴───────┘
 ```
-*(G=GUI, A=Alt, C=Ctrl, S=Shift, TG(R)=RAW Toggle, ENT(F)=Enter hold for Func Layer, Num=Number & Symbol Layer, Nav=Navigation Layer, LSFT/RSFT=Pure Left/Right Shift, SPC(N)=Space hold for Navi)*
+*(G=GUI, A=Alt, C=Ctrl, S=Shift, TAB=Tab Key, ENT(F)=Enter hold for Func Layer, Num=Number & Symbol Layer, Nav=Navigation Layer, LSFT/RSFT=Pure Left/Right Shift, SPC(N)=Space hold for Navi)*
  
 ### 2. Navigation Layer (`_NAV`)
 방향키와 마우스 제어 레이어입니다. (**양쪽 엄지 가운데** 키 홀드 시 진입)
  
 ```text
 ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-│       │  TAB  │ WH_L  │ WH_D  │ WH_U  │ WH_R  │       │       │       │ HOME  │ PGUP  │ PGDN  │  END  │       │       │
+│       │  TAB  │ WH_L  │ WH_D  │ WH_U  │ WH_R  │ TG(R) │       │ TG(R) │ HOME  │ PGUP  │ PGDN  │  END  │       │       │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┼───────┤
 │ ACL0  │       │ MS_L  │ MS_D  │ MS_U  │ MS_R  │       │       │       │ LEFT  │ DOWN  │  UP   │ RGHT  │       │       │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┘       └───────┼───────┼───────┼───────┼───────┼───────┼───────┤
@@ -40,7 +40,7 @@
                         │       │       │       │                       │       │       │       │
                         └───────┴───────┴───────┘                       └───────┴───────┴───────┘
 ```
-*(ACL0/2=마우스 가속 속도 0/2, WH_L/D/U/R=마우스 휠 좌/하/상/우, MS_L/D/U/R=마우스 커서 이동 좌/하/상/우, BTN1/3/2=마우스 좌클릭/휠클릭/우클릭, BSPC=Backspace, DEL=Delete)*
+*(ACL0/2=마우스 가속 속도 0/2, WH_L/D/U/R=마우스 휠 좌/하/상/우, MS_L/D/U/R=마우스 커서 이동 좌/하/상/우, BTN1/3/2=마우스 좌클릭/휠클릭/우클릭, BSPC=Backspace, DEL=Delete, TG(R)=RAW Toggle)*
  
 ### 3. Number & Symbol Layer (`_NUM`)
 숫자 입력 및 특수 기호 통합 레이어입니다. (**양쪽 엄지 가장 바깥쪽** `MO(_NUM)` 키 홀드 시 진입)
