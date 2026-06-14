@@ -160,6 +160,8 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, u
     switch (other_keycode) {
         case QK_MOD_TAP ... QK_MOD_TAP_MAX:
         case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+        case QK_MOMENTARY ... QK_MOMENTARY_MAX:
+        case QK_TOGGLE_LAYER ... QK_TOGGLE_LAYER_MAX:
         case KC_LCTL: case KC_LSFT: case KC_LALT: case KC_LGUI:
         case KC_RCTL: case KC_RSFT: case KC_RALT: case KC_RGUI:
             return true;
