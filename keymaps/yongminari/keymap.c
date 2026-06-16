@@ -26,6 +26,8 @@ enum layers {
 #define SPC_NAV  LT(_NAV, KC_SPC)
 #define TAB_SFT  SFT_T(KC_TAB)
 #define ENT_SFT  SFT_T(KC_ENT)
+#define TAB_NUM  LT(_NUM, KC_TAB)
+
 
 
 /* Special Aliases */
@@ -56,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 2: Left & Right (6 keys each) */
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
-        MO(_NUM), MO(_NAV), KC_LSFT,                                       KC_RSFT, SPC_NAV, MO(_NUM)
+        TAB_NUM, SPC_NAV, KC_LSFT,                                       KC_RSFT, SPC_NAV, TAB_NUM
     ),
 
 
@@ -149,7 +151,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case TAB_FUNC:
         case ENT_FUNC:
         case SPC_NAV:
-            return 200; // 엄지 레이어-탭 키: 200ms (실수 유발 방지 및 여유로운 입력)
+        case TAB_NUM:
+            return 175; // 엄지 레이어-탭 키: 175ms (실수 유발 방지 및 여유로운 입력)
         default:
             return TAPPING_TERM; // 기본값: 180ms
     }
