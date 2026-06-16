@@ -21,10 +21,10 @@
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┘       └───────┼───────┼───────┼───────┼───────┼───────┼───────┤
 │ LSFT  │   Z   │   X   │   C   │   V   │   B   │                       │   N   │   M   │   ,   │   .   │   /   │ RSFT  │
 └───────┴───────┴───────┼───────┼───────┼───────┤                       ├───────┼───────┼───────┼───────┴───────┴───────┘
-                        │  Num  │  Nav  │ LSFT  │                       │ RSFT  │ SPC(N)│  Num  │
+                        │ TAB(N)│ SPC(N)│ LSFT  │                       │ RSFT  │ SPC(N)│ TAB(N)│
                         └───────┴───────┴───────┘                       └───────┴───────┴───────┘
 ```
-*(G=GUI, A=Alt, C=Ctrl, S=Shift, TAB=Tab Key, ENT(F)=Enter hold for Func Layer, Num=Number & Symbol Layer, Nav=Navigation Layer, LSFT/RSFT=Pure Left/Right Shift, SPC(N)=Space hold for Navi)*
+*(G=GUI, A=Alt, C=Ctrl, S=Shift, TAB=Tab Key, ENT(F)=Enter hold for Func Layer, TAB(N)=Tab hold for Num Layer, SPC(N)=Space hold for Navi, LSFT/RSFT=Pure Left/Right Shift)*
  
 ### 2. Navigation Layer (`_NAV`)
 방향키와 마우스 제어 레이어입니다. (**양쪽 엄지 가운데** 키 홀드 시 진입)
@@ -132,8 +132,8 @@ sudo dd if=/home/yongminari/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of
 - **Caps Word 더블탭 기능:** 외각 핑크색 Shift 키 및 **엄지 순수 Shift 키**(`KC_LSFT` / `KC_RSFT`)를 빠르게 **더블 탭**하여 Caps Word 상태를 즉시 활성화할 수 있습니다.
 - **Layers:**
   - `_DEFAULT`: 기본 알파, GAC 홈로우 모드, 양손 엄지 순수 Shift 배치 구조.
-  - `_NAV`: 방향키, 마우스 제어. **양쪽 엄지 가운데 키**(`MO(_NAV)` / `LT(_NAV, KC_SPC)`) 홀드로 진입.
-  - `_NUM`: 통합 숫자 & 특수 기호 레이어. **양쪽 엄지 가장 바깥쪽 키**(`MO(_NUM)`) 홀드로 진입.
+  - `_NAV`: 방향키, 마우스 제어. **양쪽 엄지 가운데 키**(`SPC_NAV` / `LT(_NAV, KC_SPC)`) 홀드로 진입.
+  - `_NUM`: 통합 숫자 & 특수 기호 레이어. **양쪽 엄지 가장 바깥쪽 키**(`TAB_NUM` / `LT(_NUM, KC_TAB)`) 홀드로 진입.
   - `_FUNC`: F1 ~ F12 기능 키. **양손 검지 안쪽 홈로우 키**(`MO(_FUNC)`) 홀드로 진입.
   - `_RAW`: 홈로우 정지 모드 (양손 검지 안쪽 최상단 Row 0 키로 토글).
 - **Key Position Changes for Optimization (인체공학 및 타이핑 효율성 극대화):**
@@ -141,8 +141,8 @@ sudo dd if=/home/yongminari/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of
   - **_RAW 레이어 진입 키 대칭 배치**: `TG(_RAW)`는 양손 검지 안쪽 Row 0에 정교하게 나란히 대칭 배치하여 인지 피로를 최소화했습니다.
   - **알파 키 딜레이 원복 (`V`, `N`, `G`, `Comma`)**: 모든 알파 키들의 레이어 모디파이어 기능을 완전히 제거하여 일반 키로 지정, 고속 타이핑 시 딜레이와 오작동 원천 방지.
   - **대칭형 엄지 레이아웃 최적화**:
-    - **가장 바깥쪽 (Outer)**: `Num/Sym` 통합 모디파이어 (`MO(_NUM)`)
-    - **가운데 (Middle)**: `Navi` 모디파이어 (`MO(_NAV)` / `LT(_NAV, KC_SPC)`)
+    - **가장 바깥쪽 (Outer)**: `Num/Sym` 통합 모디파이어 (`TAB_NUM` / `LT(_NUM, KC_TAB)` - 탭 시 Tab, 홀드 시 NUM 레이어)
+    - **가운데 (Middle)**: `Navi` 모디파이어 (`SPC_NAV` / `LT(_NAV, KC_SPC)` - 탭 시 Space, 홀드 시 NAV 레이어)
     - **가장 안쪽 (Inner)**: `Shift` 모디파이어 (`KC_LSFT` / `KC_RSFT` - 오판정 제로 순수 Shift)
   - **기호 및 괄호 최적 배치 ("Shift-Pair Standard Optimization")**:
     - `[]`, `()`, `\` 괄호 고속도로: 왼손 아랫줄 `Z, X, C, V, B` 위치에 `[`, `]`, `(`, `)`, `\`를 나란히 배치하여, 기존 12개 기호를 Standard Shift 조합(예: `Shift + [` -> `{`) 단 6개의 키로 완벽하게 대응하고, 손목 and 인지 피로를 최소화했습니다.
