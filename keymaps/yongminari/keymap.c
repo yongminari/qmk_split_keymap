@@ -13,9 +13,7 @@ enum layers {
 #define A_MET   MT(MOD_LGUI, KC_A)
 #define S_ALT   MT(MOD_LALT, KC_S)
 #define D_CTL   MT(MOD_LCTL, KC_D)
-#define F_SFT   MT(MOD_LSFT, KC_F)
 
-#define J_SFT   MT(MOD_RSFT, KC_J)
 #define K_CTL   MT(MOD_RCTL, KC_K)
 #define L_ALT   MT(MOD_RALT, KC_L)
 #define CLN_MET MT(MOD_RGUI, KC_SCLN)
@@ -24,14 +22,7 @@ enum layers {
 #define TAB_FUNC LT(_FUNC, KC_TAB)
 #define ENT_FUNC LT(_FUNC, KC_ENT)
 #define SPC_NAV  LT(_NAV, KC_SPC)
-#define TAB_SFT  SFT_T(KC_TAB)
-#define ENT_SFT  SFT_T(KC_ENT)
 #define TAB_NUM  LT(_NUM, KC_TAB)
-
-
-
-/* Special Aliases */
-#define ESC_CTL CTL_T(KC_ESC)
 
 /* Mouse Key Aliases */
 #define MS_L    MS_LEFT
@@ -107,8 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint16_t shift_tap_timer = 0;
     
-    // 외각 핑크색 전용 Shift 키(KC_LSFT, KC_RSFT)의 더블탭을 감지하여 Caps Word 활성화
-    // 홈로우 Shift(F_SFT, J_SFT)는 한글 연타(예: 'ㄹㄹ') 시 의도치 않은 작동을 막기 위해 제외
+    // 외각 전용 Shift 키(KC_LSFT, KC_RSFT)의 더블탭을 감지하여 Caps Word 활성화
     if (keycode == KC_LSFT || keycode == KC_RSFT) {
         if (record->event.pressed) {
             if (timer_elapsed(shift_tap_timer) < TAPPING_TERM) {
@@ -142,8 +132,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case A_MET:
         case S_ALT:
         case D_CTL:
-        case F_SFT:
-        case J_SFT:
         case K_CTL:
         case L_ALT:
         case CLN_MET:
@@ -159,7 +147,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, uint16_t other_keycode, keyrecord_t *other_record) {
-    // 1. 모디파이어 키들끼리의 조합(예: Ctrl + Shift, Super + Alt 등)은 같은 손이더라도 무조건 Hold로 인정합니다.
+    // 모디파이어 키들끼리의 조합(예: Ctrl + Shift, Super + Alt 등)은 같은 손이더라도 무조건 Hold로 인정합니다.
     switch (other_keycode) {
         case QK_MOD_TAP ... QK_MOD_TAP_MAX:
         case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
@@ -168,12 +156,6 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, u
         case KC_LCTL: case KC_LSFT: case KC_LALT: case KC_LGUI:
         case KC_RCTL: case KC_RSFT: case KC_RALT: case KC_RGUI:
             return true;
-    }
-
-    // 2. 엄지 탭-홀드 Shift 키(TAB_SFT, ENT_SFT)는 동일 손의 알파벳 및 기호와 조합될 때도 즉각 Shift(Hold)로 확정시킵니다.
-    // (예: 오른손 엄지 ENT_SFT를 홀드하면서 오른손 알파벳을 칠 때 지연이 발생하거나 Enter가 입력되는 현상 방지)
-    if (tap_hold_keycode == TAB_SFT || tap_hold_keycode == ENT_SFT) {
-        return true;
     }
 
     // 사용자님은 엄격한 인간공학적 크로스(양손) 입력을 실천하고 계시므로,
@@ -216,20 +198,11 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_
     if (!is_flow_tap_key(keycode) || !is_flow_tap_key(prev_keycode)) {
         return 0; // 흐름 입력 대상 키가 아니면 Flow Tap 비활성화 (get_flow_tap_term이 정의되면 is_flow_tap_key보다 우선하기 때문)
     }
-    switch (keycode) {
-        case F_SFT:
-        case J_SFT:
-            return 85; // Shift 키의 흐름 입력 대기 시간(Flow Tap Term)을 85ms로 단축
-        default:
-            return FLOW_TAP_TERM; // 기본값: 120ms (config.h 정의)
-    }
+    return FLOW_TAP_TERM; // 기본값: 120ms (config.h 정의)
 }
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case TAB_SFT:
-        case ENT_SFT:
-            return 0; // 엄지 Shift 키들은 연타 시 단순 탭(Tab/Enter) 연속 입력으로 작동하지 않고 항상 무조건 Shift(Hold)로 즉시 활성화
         default:
             return QUICK_TAP_TERM; // 기본값 (175ms)
     }
