@@ -213,6 +213,9 @@ bool is_flow_tap_key(uint16_t keycode) {
     return false;
 }
 uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
+    if (!is_flow_tap_key(keycode) || !is_flow_tap_key(prev_keycode)) {
+        return 0; // 흐름 입력 대상 키가 아니면 Flow Tap 비활성화 (get_flow_tap_term이 정의되면 is_flow_tap_key보다 우선하기 때문)
+    }
     switch (keycode) {
         case F_SFT:
         case J_SFT:
