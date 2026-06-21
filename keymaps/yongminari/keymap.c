@@ -70,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  KC_RCBR,   _______, KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
         /* Row 2: Left & Right (6 keys each) */
-        KC_LSFT, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               KC_EQL,  KC_1,    KC_2,    KC_3,    KC_DOT,  _______,
+        KC_LSFT, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               KC_EQL,  KC_1,    KC_2,    KC_3,    KC_QUES,  _______,
         /* Thumb Row: Left & Right (3 keys each) */
-        KC_UNDS, KC_PLUS, KC_PIPE,                                        KC_PERC, KC_0,    _______
+        KC_UNDS, KC_PLUS, KC_PIPE,                                        KC_PERC, KC_0,    KC_DOT
     ),
 
     [_FUNC] = LAYOUT_split_3x6_3_ex2(
