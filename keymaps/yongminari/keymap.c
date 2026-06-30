@@ -10,13 +10,13 @@ enum layers {
 };
 
 /* Home Row Mods Aliases */
-#define A_MET   MT(MOD_LGUI, KC_A)
-#define S_ALT   MT(MOD_LALT, KC_S)
-#define D_CTL   MT(MOD_LCTL, KC_D)
+#define S_MET   MT(MOD_LGUI, KC_S)
+#define D_ALT   MT(MOD_LALT, KC_D)
+#define F_CTL   MT(MOD_LCTL, KC_F)
 
-#define K_CTL   MT(MOD_RCTL, KC_K)
-#define L_ALT   MT(MOD_RALT, KC_L)
-#define CLN_MET MT(MOD_RGUI, KC_SCLN)
+#define J_CTL   MT(MOD_RCTL, KC_J)
+#define K_ALT   MT(MOD_RALT, KC_K)
+#define L_MET   MT(MOD_RGUI, KC_L)
 
 /* Thumb Row Layer Tap Aliases */
 #define TAB_FUNC LT(_FUNC, KC_TAB)
@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 0: Left & Right */
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_TAB,    KC_TAB,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         /* Row 1: Left & Right */
-        KC_LCTL, A_MET,   S_ALT,   D_CTL,   KC_F,    KC_G,    ENT_FUNC,  ENT_FUNC,KC_H,   KC_J,    K_CTL,   L_ALT,   CLN_MET, KC_QUOT,
+        KC_LCTL, KC_A,    S_MET,   D_ALT,   F_CTL,   KC_G,    ENT_FUNC,  ENT_FUNC,KC_H,   J_CTL,   K_ALT,   L_MET,   KC_SCLN, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         /* Thumb Row: Left & Right (3 keys each) */
@@ -129,12 +129,12 @@ bool rgb_matrix_indicators_user(void) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case A_MET:
-        case S_ALT:
-        case D_CTL:
-        case K_CTL:
-        case L_ALT:
-        case CLN_MET:
+        case S_MET:
+        case D_ALT:
+        case F_CTL:
+        case J_CTL:
+        case K_ALT:
+        case L_MET:
             return 175; // 홈로우 모디파이어 키: 175ms (더 빠르고 민첩한 반응)
         case TAB_FUNC:
         case ENT_FUNC:
