@@ -77,9 +77,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FUNC] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, _______, KC_F9,   KC_F8,   KC_F7,   KC_F12,  _______,   _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______,
+        _______, KC_VOLU, KC_F9,   KC_F8,   KC_F7,   KC_F12,  _______,   _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, _______,
         /* Row 1: Left & Right */
-        _______, _______, KC_F6,   KC_F5,   KC_F4,   KC_F11,  _______,   _______, KC_F11,  KC_F4,   KC_F5,   KC_F6,   _______, _______,
+        _______, KC_VOLD, KC_F6,   KC_F5,   KC_F4,   KC_F11,  _______,   _______, KC_F11,  KC_F4,   KC_F5,   KC_F6,   S(KC_PSCR), _______,
         /* Row 2: Left & Right (6 keys each) */
         _______, _______, KC_F3,   KC_F2,   KC_F1,   KC_F10,               KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______,
         /* Thumb Row: Left & Right (3 keys each) */
@@ -135,7 +135,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case J_CTL:
         case K_ALT:
         case L_MET:
-            return 175; // 홈로우 모디파이어 키: 175ms (더 빠르고 민첩한 반응)
+            return 200; // 홈로우 모디파이어 키: 200ms (오작동 방지를 위해 200ms로 변경)
         case TAB_FUNC:
         case ENT_FUNC:
         case SPC_NAV:

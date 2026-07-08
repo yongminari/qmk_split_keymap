@@ -9,7 +9,7 @@
 #define TAPPING_TERM_PER_KEY
 #define CHORDAL_HOLD
 #define FLOW_TAP_TERM 120
-#define PERMISSIVE_HOLD
+// #define PERMISSIVE_HOLD
 
 
 
