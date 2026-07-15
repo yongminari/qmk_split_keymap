@@ -14,9 +14,9 @@ enum layers {
 #define D_ALT   MT(MOD_LALT, KC_D)
 #define F_CTL   MT(MOD_LCTL, KC_F)
 
-#define J_CTL   MT(MOD_RCTL, KC_J)
-#define K_ALT   MT(MOD_RALT, KC_K)
-#define L_MET   MT(MOD_RGUI, KC_L)
+#define J_CTL   MT(MOD_LCTL, KC_J)
+#define K_ALT   MT(MOD_LALT, KC_K)
+#define L_MET   MT(MOD_LGUI, KC_L)
 
 /* Thumb Row Layer Tap Aliases */
 #define TAB_FUNC LT(_FUNC, KC_TAB)
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         KC_LCTL, KC_A,    S_MET,   D_ALT,   F_CTL,   KC_G,    ENT_FUNC,  ENT_FUNC,KC_H,   J_CTL,   K_ALT,   L_MET,   KC_SCLN, KC_QUOT,
         /* Row 2: Left & Right (6 keys each) */
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RALT,
         /* Thumb Row: Left & Right (3 keys each) */
         TAB_NUM, SPC_NAV, KC_LSFT,                                       KC_RSFT, SPC_NAV, TAB_NUM
     ),
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         MS_ACL0, _______, MS_L,    MS_D,    MS_U,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
         /* Row 2: Left & Right */
-        MS_ACL2, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               _______, KC_BSPC, KC_DEL,  _______, _______, _______,
+        MS_ACL2, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               _______, KC_BSPC, KC_DEL,  _______, _______, KC_APP,
         /* Thumb Row: Left & Right */
         _______, _______, _______,                                        _______, _______, _______
     ),
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  KC_RCBR,   _______, KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
         /* Row 2: Left & Right (6 keys each) */
-        KC_LSFT, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               KC_EQL,  KC_1,    KC_2,    KC_3,    KC_QUES,  _______,
+        KC_LSFT, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               KC_EQL,  KC_1,    KC_2,    KC_3,    KC_QUES,  KC_RCTL,
         /* Thumb Row: Left & Right (3 keys each) */
         KC_UNDS, KC_PLUS, KC_PIPE,                                        KC_PERC, KC_0,    KC_DOT
     ),
