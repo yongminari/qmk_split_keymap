@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_TAB,  MS_WH_L, MS_WH_D, MS_WH_U, MS_WH_R, TG(_RAW),  TG(_RAW), KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
+        _______, KC_ESC,  MS_WH_L, MS_WH_D, MS_WH_U, MS_WH_R, TG(_RAW),  TG(_RAW), KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
         /* Row 1: Left & Right */
         MS_ACL0, _______, MS_L,    MS_D,    MS_U,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
         /* Row 2: Left & Right */
