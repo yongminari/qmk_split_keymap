@@ -4,12 +4,40 @@
 #
 
 # 스크립트 실행 중 에러 발생 시 즉시 중단
-set -e
+set -euo pipefail
 
-FW_PATH="/home/yongminari/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+QMK_FIRMWARE_DIR="${QMK_FIRMWARE_DIR:-/home/yongminari/qmk_firmware}"
+FW_PATH="$QMK_FIRMWARE_DIR/crkbd_rev4_1_standard_yongminari.uf2"
 
-echo "==> [1/2] QMK 펌웨어 컴파일을 시작합니다..."
-cd ~/qmk_firmware
+case "${1:-}" in
+    --update)
+        "$SCRIPT_DIR/update_qmk.sh"
+        ;;
+    --help|-h)
+        echo "사용법: $0 [--update]"
+        echo "  --update  공식 QMK의 최신 안정 태그로 이동한 뒤 빌드"
+        exit 0
+        ;;
+    "")
+        ;;
+    *)
+        echo "오류: 알 수 없는 옵션: $1"
+        echo "사용법: $0 [--update]"
+        exit 1
+        ;;
+esac
+
+if ! git -C "$QMK_FIRMWARE_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "오류: QMK 저장소를 찾을 수 없습니다: $QMK_FIRMWARE_DIR"
+    exit 1
+fi
+
+QMK_VERSION="$(git -C "$QMK_FIRMWARE_DIR" describe --tags --exact-match HEAD 2>/dev/null \
+    || git -C "$QMK_FIRMWARE_DIR" rev-parse --short HEAD)"
+
+echo "==> [1/2] QMK $QMK_VERSION 펌웨어 컴파일을 시작합니다..."
+cd "$QMK_FIRMWARE_DIR"
 qmk compile -kb crkbd/rev4_1/standard -km yongminari --clean
 
 # 빌드 결과물 UF2 파일 확인

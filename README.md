@@ -96,11 +96,35 @@
 rm -rf ~/qmk_firmware/keyboards/crkbd/keymaps/yongminari
 
 # 올바른 경로로 심볼릭 링크 설정
-ln -s /home/yongminari/workspace/qmk_split_keymap/keymaps/yongminari ~/qmk_firmware/keyboards/crkbd/keymaps/yongminari
+ln -s /home/yongminari/Workspace/qmk_split_keymap/keymaps/yongminari ~/qmk_firmware/keyboards/crkbd/keymaps/yongminari
 ```
 
-### 2. Build (펌웨어 컴파일)
-저장소 루트의 빌드 헬퍼 스크립트를 사용하여 펌웨어를 빌드합니다.
+### 2. QMK 업데이트 및 Build (펌웨어 컴파일)
+최신 공식 안정 태그로 QMK를 업데이트한 뒤 펌웨어를 빌드합니다.
+
+```bash
+./build.sh --update
+```
+
+이 명령은 `0.33.13`처럼 숫자로 된 최신 안정 태그만 선택하며, QMK 저장소의 추적 파일에 미커밋 변경이 있으면 업데이트를 중단합니다. 한 번 업데이트한 뒤에는 네트워크 조회 없이 현재 버전으로 다시 빌드할 수 있습니다.
+
+```bash
+./build.sh
+```
+
+업데이트만 별도로 실행하려면 다음 명령을 사용합니다.
+
+```bash
+./update_qmk.sh
+```
+
+QMK가 기본 경로가 아닌 곳에 있다면 `QMK_FIRMWARE_DIR`을 지정할 수 있습니다.
+
+```bash
+QMK_FIRMWARE_DIR=/path/to/qmk_firmware ./build.sh --update
+```
+
+동일한 작업을 QMK 명령으로 직접 빌드하려면 다음과 같습니다.
 
 ```bash
 qmk compile -kb crkbd/rev4_1/standard -km yongminari --clean
