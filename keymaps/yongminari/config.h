@@ -18,8 +18,8 @@
 /* Combo 설정 */
 #define COMBO_TERM 200
 
-/* 분할 키보드 통신 최적화 */
-#define SPLIT_USB_DETECT
+/* Corne v4.1은 GP13(USB_VBUS_PIN)으로 USB 연결 쪽을 하드웨어 감지합니다. */
+/* SPLIT_USB_DETECT를 켜면 콜드 부팅 중 양쪽이 slave로 오판정할 수 있습니다. */
 #define MASTER_LEFT
 
 /* RGB Matrix 설정 */
