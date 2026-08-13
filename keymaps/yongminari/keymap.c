@@ -54,9 +54,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_ESC,  MS_WH_L, MS_WH_D, MS_WH_U, MS_WH_R, _______,   _______, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______,
+        _______, KC_ESC,  MS_WH_L, MS_WH_U, MS_WH_D, MS_WH_R, _______,   _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
         /* Row 1: Left & Right */
-        _______, _______, MS_L,    MS_D,    MS_U,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+        _______, _______, MS_L,    MS_U,    MS_D,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
         /* Row 2: Left & Right */
         _______, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               _______, KC_BSPC, KC_DEL,  _______, _______, _______,
         /* Thumb Row: Left & Right */
@@ -199,5 +199,3 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
             return QUICK_TAP_TERM; // 기본값 (175ms)
     }
 }
-
-
