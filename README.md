@@ -88,15 +88,11 @@
 
 ## 🚀 Quick Start (NixOS)
 
-### 1. 동기화 (최초 1회 실행)
-저장소의 설정을 `qmk_firmware` 폴더 내의 Corne 키맵 위치로 심볼릭 링크를 설정합니다.
+### 1. QMK 준비 (최초 1회)
+QMK CLI와 `qmk_firmware` 저장소를 준비합니다. 키맵은 QMK의 External Userspace 구조를 사용하므로 별도의 심볼릭 링크가 필요하지 않습니다.
 
 ```bash
-# 기존 디렉토리가 존재한다면 삭제 (또는 백업)
-rm -rf ~/qmk_firmware/keyboards/crkbd/keymaps/yongminari
-
-# 올바른 경로로 심볼릭 링크 설정
-ln -s /home/yongminari/Workspace/qmk_split_keymap/keymaps/yongminari ~/qmk_firmware/keyboards/crkbd/keymaps/yongminari
+qmk setup
 ```
 
 ### 2. QMK 업데이트 및 Build (펌웨어 컴파일)
@@ -127,7 +123,7 @@ QMK_FIRMWARE_DIR=/path/to/qmk_firmware ./build.sh --update
 동일한 작업을 QMK 명령으로 직접 빌드하려면 다음과 같습니다.
 
 ```bash
-qmk compile -kb crkbd/rev4_1/standard -km yongminari --clean
+QMK_USERSPACE="$PWD" qmk compile -kb crkbd/rev4_1/standard -km yongminari --clean
 ```
 
 ### 3. Flash (펌웨어 다운로드)
@@ -136,10 +132,46 @@ qmk compile -kb crkbd/rev4_1/standard -km yongminari --clean
   - **왼쪽:** `Q` 키를 누른 채 USB 연결
   - **오른쪽:** `P` 키를 누른 채 USB 연결
 
+빌드 결과물은 이 저장소 루트의 `crkbd_rev4_1_standard_yongminari.uf2`에 생성됩니다. 키보드를 부트로더 모드로 연결하면 `flash.sh`가 마운트된 `RPI-RP2` 볼륨을 찾아 UF2 파일을 복사합니다.
+
 ```bash
-# 장치 이름(sdX1 등)은 lsblk 명령어 필수 확인
-sudo dd if=/home/yongminari/qmk_firmware/crkbd_rev4_1_standard_yongminari.uf2 of=/dev/sdX1 conv=fdatasync status=progress
+./flash.sh
 ```
+
+자동 감지가 되지 않으면 블록 장치가 아닌 **마운트 경로**를 지정합니다.
+
+```bash
+./flash.sh /run/media/$USER/RPI-RP2
+```
+
+---
+
+## GitHub Actions CI/CD
+
+- Pull Request: QMK `0.33.13` 기준으로 펌웨어를 컴파일해 변경 사항을 검증합니다.
+- `main` 브랜치 Push 및 수동 실행: 컴파일만 검증하고 릴리스는 만들지 않습니다.
+- `v0.1.0` 형태의 Git 태그 Push: `VERSION`과 태그가 일치하는지 확인한 후 GitHub Release를 생성합니다.
+- 릴리스 파일: 버전명이 붙은 UF2 원본, Linux용 `flash.sh`와 안내문이 포함된 `tar.gz`, SHA-256 체크섬을 제공합니다.
+
+별도의 Personal Access Token이나 유료 플랜은 필요하지 않습니다. 워크플로는 저장소에 자동으로 제공되는 `GITHUB_TOKEN`만 사용합니다.
+재현 가능한 빌드를 위해 CI의 QMK 소스는 `0.33.13`에 고정되어 있으며, 버전을 올릴 때는 `.github/workflows/firmware.yml`의 `qmk_ref`를 변경합니다.
+
+### 버전 규칙
+
+펌웨어 버전은 Semantic Versioning(`MAJOR.MINOR.PATCH`)으로 관리합니다.
+
+- `PATCH`: 키 위치 미세 조정, 오타 수정 등 기존 사용법을 유지하는 변경
+- `MINOR`: 새 레이어나 기능 추가처럼 호환되는 기능 변경
+- `MAJOR`: 기본 레이아웃 전면 변경처럼 기존 사용 습관과 호환되지 않는 변경
+
+현재 버전은 `0.1.0`입니다. 첫 릴리스는 변경 사항을 커밋해 `main`에 푸시한 다음 태그를 생성합니다.
+
+```bash
+git tag -a v0.1.0 -m "Firmware v0.1.0"
+git push origin v0.1.0
+```
+
+태그 이름에서 `v`를 뺀 값과 저장소의 `VERSION`이 다르면 릴리스가 중단됩니다. 다음 버전에서는 `VERSION`과 `CHANGELOG.md`를 먼저 수정한 뒤 새 태그를 생성합니다.
 
 ---
 

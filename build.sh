@@ -8,7 +8,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 QMK_FIRMWARE_DIR="${QMK_FIRMWARE_DIR:-/home/yongminari/qmk_firmware}"
-FW_PATH="$QMK_FIRMWARE_DIR/crkbd_rev4_1_standard_yongminari.uf2"
+FW_PATH="$SCRIPT_DIR/crkbd_rev4_1_standard_yongminari.uf2"
+
+# Keep the keymap outside qmk_firmware using QMK's External Userspace support.
+export QMK_USERSPACE="$SCRIPT_DIR"
 
 case "${1:-}" in
     --update)

@@ -1,0 +1,5 @@
+# QMK build outputs
+*.bin
+*.hex
+*.uf2
+compile_commands.json
