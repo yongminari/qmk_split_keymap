@@ -172,11 +172,11 @@ QMK_USERSPACE="$PWD" qmk compile -kb crkbd/rev4_1/standard -km yongminari --clea
 - `MINOR`: 새 레이어나 기능 추가처럼 호환되는 기능 변경
 - `MAJOR`: 기본 레이아웃 전면 변경처럼 기존 사용 습관과 호환되지 않는 변경
 
-현재 버전은 `0.1.0`입니다. 첫 릴리스는 변경 사항을 커밋해 `main`에 푸시한 다음 태그를 생성합니다.
+현재 버전은 `0.2.0`입니다. 릴리스 변경 사항을 커밋해 `main`에 푸시한 다음 태그를 생성합니다.
 
 ```bash
-git tag -a v0.1.0 -m "Firmware v0.1.0"
-git push origin v0.1.0
+git tag -a v0.2.0 -m "Firmware v0.2.0"
+git push origin v0.2.0
 ```
 
 태그 이름에서 `v`를 뺀 값과 저장소의 `VERSION`이 다르면 릴리스가 중단됩니다. 다음 버전에서는 `VERSION`과 `CHANGELOG.md`를 먼저 수정한 뒤 새 태그를 생성합니다.
