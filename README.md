@@ -157,13 +157,13 @@ QMK_USERSPACE="$PWD" qmk compile -kb crkbd/rev4_1/standard -km yongminari --clea
 
 ## GitHub Actions CI/CD
 
-- Pull Request: QMK `0.33.13` 기준으로 펌웨어를 컴파일해 변경 사항을 검증합니다.
+- Pull Request: 실행 시점의 최신 QMK 안정 태그를 찾아 펌웨어를 컴파일해 변경 사항을 검증합니다.
 - `main` 브랜치 Push 및 수동 실행: 컴파일만 검증하고 릴리스는 만들지 않습니다.
 - `v0.1.0` 형태의 Git 태그 Push: `VERSION`과 태그가 일치하는지 확인한 후 GitHub Release를 생성합니다.
-- 릴리스 파일: 버전명이 붙은 UF2 원본, Linux용 `flash.sh`와 안내문이 포함된 `tar.gz`, SHA-256 체크섬을 제공합니다.
+- 릴리스 파일: 버전명이 붙은 UF2 원본, Linux용 `flash.sh`와 안내문이 포함된 `tar.gz`, 사용한 QMK 안정 버전을 기록한 `QMK_VERSION.txt`, SHA-256 체크섬을 제공합니다.
 
 별도의 Personal Access Token이나 유료 플랜은 필요하지 않습니다. 워크플로는 저장소에 자동으로 제공되는 `GITHUB_TOKEN`만 사용합니다.
-재현 가능한 빌드를 위해 CI의 QMK 소스는 `0.33.13`에 고정되어 있으며, 버전을 올릴 때는 `.github/workflows/firmware.yml`의 `qmk_ref`를 변경합니다.
+CI는 숫자로만 구성된 QMK 안정 태그 중 최신 버전을 실행할 때마다 자동으로 선택하며, 개발 브랜치와 사전 릴리스 태그는 사용하지 않습니다. 선택된 버전은 워크플로 요약과 릴리스의 `QMK_VERSION.txt`에 기록됩니다.
 
 ### 버전 규칙
 

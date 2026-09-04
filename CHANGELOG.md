@@ -2,6 +2,11 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/)을 따릅니다.
 
+## Unreleased
+
+- CI 및 릴리스 빌드가 실행 시점의 최신 QMK 안정 태그를 자동으로 사용하도록 변경
+- 릴리스에 실제 사용한 QMK 버전을 `QMK_VERSION.txt`로 기록
+
 ## 0.3.0 - 2026-09-04
 
 - `W/O`, `E/I`, `R/U`에 각각 GUI+Shift, Alt+Shift, Ctrl+Shift 홀드를 좌우 대칭으로 추가
