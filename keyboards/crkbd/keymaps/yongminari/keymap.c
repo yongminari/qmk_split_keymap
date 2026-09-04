@@ -58,16 +58,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         _______, _______, MS_L,    MS_U,    MS_D,    MS_R,    _______,   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
         /* Row 2: Left & Right */
-        _______, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               _______, KC_BSPC, KC_DEL,  _______, _______, _______,
+        _______, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               KC_ENT,  KC_BSPC, KC_DEL,  _______, _______, _______,
         /* Thumb Row: Left & Right */
         _______, _______, _______,                                        _______, KC_RALT, KC_RCTL
     ),
 
     [_NUM] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_LCBR,   KC_GRV,  KC_SLSH, KC_7,    KC_8,    KC_9,    KC_MINS, _______,
+        _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_LCBR,   _______, KC_SLSH, KC_7,    KC_8,    KC_9,    KC_GRV,  _______,
         /* Row 1: Left & Right */
-        _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  KC_RCBR,   KC_QUOT, KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
+        _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  KC_RCBR,   _______, KC_ASTR, KC_4,    KC_5,    KC_6,    KC_QUOT, _______,
         /* Row 2: Left & Right (6 keys each) */
         _______, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               KC_EQL,  KC_1,    KC_2,    KC_3,    KC_QUES,  _______,
         /* Thumb Row: Left & Right (3 keys each) */
