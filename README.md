@@ -186,7 +186,7 @@ git push origin v0.2.0
 ## ⌨️ Keymap Features
 - **3x5+3 구조**: 양손 최외각 열과 내부 추가 키 4개를 전 레이어에서 비활성화하여 손가락 이동 동선을 단축하고 오입력을 방지했습니다.
 - **Home Row Mods (GAC):** `S,D,F / J,K,L` 키에 GUI, Alt, Ctrl 적용. 윈도우 환경 호환성을 위해 좌우 홈로우 모두 Left Modifier를 사용합니다.
-- **Tapping Term:** 180ms 일괄 적용.
+- **Tap-Hold 판정:** 다른 키 입력은 무시하고 누른 시간만 사용. 3x5 dual-role 키는 200ms, 엄지 Layer-Tap 키는 175ms이며 연속 탭 문자 반복을 지원합니다.
 - **Caps Word 더블탭 기능:** 양쪽 엄지 순수 Shift 키 (`KC_LSFT` / `KC_RSFT`)를 빠르게 더블 탭하여 Caps Word 활성화.
 - **RAW Layer 완전 제거**: 사용하지 않는 RAW 레이어 및 토글 키를 완전히 삭제하여 4개 깔끔한 레이어로 정돈.
 - **기호 및 따옴표 콤보/Shift 쌍 관리**:
