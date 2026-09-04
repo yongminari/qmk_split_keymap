@@ -139,9 +139,16 @@ QMK_USERSPACE="$PWD" qmk compile -kb crkbd/rev4_1/standard -km yongminari --clea
 ./flash.sh
 ```
 
-자동 감지가 되지 않으면 블록 장치가 아닌 **마운트 경로**를 지정합니다.
+자동 감지가 되지 않거나 볼륨이 아직 마운트되지 않았다면 장치 이름을 지정합니다. 스크립트가 `RPI-RP2` 볼륨인지 검증하고 자동으로 마운트한 뒤 플래싱합니다.
 
 ```bash
+./flash.sh sdc1
+```
+
+`/dev/sdc1`처럼 전체 장치 경로나 기존 방식대로 마운트 경로를 지정할 수도 있습니다.
+
+```bash
+./flash.sh /dev/sdc1
 ./flash.sh /run/media/$USER/RPI-RP2
 ```
 
