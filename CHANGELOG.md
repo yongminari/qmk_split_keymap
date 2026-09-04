@@ -2,7 +2,7 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/)을 따릅니다.
 
-## Unreleased
+## 0.3.1 - 2026-09-04
 
 - CI 및 릴리스 빌드가 실행 시점의 최신 QMK 안정 태그를 자동으로 사용하도록 변경
 - 릴리스에 실제 사용한 QMK 버전을 `QMK_VERSION.txt`로 기록
