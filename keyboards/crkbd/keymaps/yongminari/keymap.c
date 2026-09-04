@@ -17,6 +17,15 @@ enum layers {
 #define K_ALT   MT(MOD_LALT, KC_K)
 #define L_MET   MT(MOD_LGUI, KC_L)
 
+/* Shift Combo Mods Aliases */
+#define W_SMET  LSG_T(KC_W)
+#define E_SALT  LSA_T(KC_E)
+#define R_SCTL  LCS_T(KC_R)
+
+#define U_SCTL  LCS_T(KC_U)
+#define I_SALT  LSA_T(KC_I)
+#define O_SMET  LSG_T(KC_O)
+
 /* Layer Tap Aliases */
 #define V_FUNC   LT(_FUNC, KC_V)
 #define M_FUNC   LT(_FUNC, KC_M)
@@ -42,7 +51,7 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_NO,     KC_NO,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
+        _______, KC_Q,    W_SMET,  E_SALT,  R_SCTL,  KC_T,    KC_NO,     KC_NO,   KC_Y,    U_SCTL,  I_SALT,  O_SMET,  KC_P,    _______,
         /* Row 1: Left & Right */
         _______, KC_A,    S_MET,   D_ALT,   F_CTL,   KC_G,    KC_NO,     KC_NO,   KC_H,    J_CTL,   K_ALT,   L_MET,   KC_SCLN, _______,
         /* Row 2: Left & Right (6 keys each) */

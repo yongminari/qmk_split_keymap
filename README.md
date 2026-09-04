@@ -12,12 +12,13 @@
 ### 1. Default Layer (`_DEFAULT`)
 기본 타이핑 레이어입니다. 양손 최외각 Column 0을 완전히 비워(`_______`) 3x5+3 인체공학적 배치를 완성했습니다.
 - **Home Row Mods (GAC):** `S, D, F / J, K, L` 키에 GUI, Alt, Ctrl 배치.
+- **Shift Combo Mods:** `W/O`, `E/I`, `R/U`를 탭하면 원래 문자를 입력하고, 홀드하면 각각 GUI+Shift, Alt+Shift, Ctrl+Shift가 좌우 대칭으로 활성화.
 - **Dedicated Thumb Shift:** 양쪽 엄지 안쪽 키에 오판정이 없는 `KC_LSFT` / `KC_RSFT` 전용 Shift 키 배치.
 - **Function Layer Tap:** `V_FUNC` / `M_FUNC`를 탭하면 `V` / `M`, 홀드하면 `_FUNC` 레이어로 진입.
  
 ```text
 ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-│   ·   │   Q   │   W   │   E   │   R   │   T   │   ·   │       │   ·   │   Y   │   U   │   I   │   O   │   P   │   ·   │
+│   ·   │   Q   │ W(SG) │ E(SA) │ R(SC) │   T   │   ·   │       │   ·   │   Y   │ U(SC) │ I(SA) │ O(SG) │   P   │   ·   │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┼───────┤
 │   ·   │   A   │ S(G)  │ D(A)  │ F(C)  │   G   │   ·   │       │   ·   │   H   │ J(C)  │ K(A)  │ L(G)  │   ;   │   ·   │
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┘       └───────┼───────┼───────┼───────┼───────┼───────┼───────┤
@@ -26,7 +27,7 @@
                         │ TAB(N)│ SPC(N)│ LSFT  │                       │ RSFT  │ SPC(N)│ TAB(N)│
                         └───────┴───────┴───────┘                       └───────┴───────┴───────┘
 ```
-*(G=GUI, A=Alt, C=Ctrl, S=Shift, V(F)/M(F)=V/M hold for Func Layer, TAB(N)=Tab hold for Num Layer, SPC(N)=Space hold for Navi, LSFT/RSFT=Pure Left/Right Shift, · = Disabled)*
+*(G=GUI, A=Alt, C=Ctrl, S=Shift, W/E/R/U/I/O의 괄호 안 조합=홀드 시 복합 모디파이어, V(F)/M(F)=V/M hold for Func Layer, TAB(N)=Tab hold for Num Layer, SPC(N)=Space hold for Navi, LSFT/RSFT=Pure Left/Right Shift, · = Disabled)*
  
 ### 2. Navigation Layer (`_NAV`)
 방향키 및 마우스 제어 레이어입니다. (**양쪽 엄지 가운데** `SPC_NAV` 키 홀드 시 진입)
@@ -172,11 +173,11 @@ QMK_USERSPACE="$PWD" qmk compile -kb crkbd/rev4_1/standard -km yongminari --clea
 - `MINOR`: 새 레이어나 기능 추가처럼 호환되는 기능 변경
 - `MAJOR`: 기본 레이아웃 전면 변경처럼 기존 사용 습관과 호환되지 않는 변경
 
-현재 버전은 `0.2.0`입니다. 릴리스 변경 사항을 커밋해 `main`에 푸시한 다음 태그를 생성합니다.
+현재 버전은 `0.3.0`입니다. 릴리스 변경 사항을 커밋해 `main`에 푸시한 다음 태그를 생성합니다.
 
 ```bash
-git tag -a v0.2.0 -m "Firmware v0.2.0"
-git push origin v0.2.0
+git tag -a v0.3.0 -m "Firmware v0.3.0"
+git push origin v0.3.0
 ```
 
 태그 이름에서 `v`를 뺀 값과 저장소의 `VERSION`이 다르면 릴리스가 중단됩니다. 다음 버전에서는 `VERSION`과 `CHANGELOG.md`를 먼저 수정한 뒤 새 태그를 생성합니다.
@@ -186,6 +187,7 @@ git push origin v0.2.0
 ## ⌨️ Keymap Features
 - **3x5+3 구조**: 양손 최외각 열과 내부 추가 키 4개를 전 레이어에서 비활성화하여 손가락 이동 동선을 단축하고 오입력을 방지했습니다.
 - **Home Row Mods (GAC):** `S,D,F / J,K,L` 키에 GUI, Alt, Ctrl 적용. 윈도우 환경 호환성을 위해 좌우 홈로우 모두 Left Modifier를 사용합니다.
+- **Shift Combo Mods:** `W/O`는 GUI+Shift, `E/I`는 Alt+Shift, `R/U`는 Ctrl+Shift를 홀드로 제공합니다. 탭하면 원래 문자가 입력되며, 좌우 모두 Left Modifier를 사용합니다.
 - **Tap-Hold 판정:** 다른 키 입력은 무시하고 누른 시간만 사용. 3x5 dual-role 키는 200ms, 엄지 Layer-Tap 키는 175ms이며 연속 탭 문자 반복을 지원합니다.
 - **Caps Word 더블탭 기능:** 양쪽 엄지 순수 Shift 키 (`KC_LSFT` / `KC_RSFT`)를 빠르게 더블 탭하여 Caps Word 활성화.
 - **RAW Layer 완전 제거**: 사용하지 않는 RAW 레이어 및 토글 키를 완전히 삭제하여 4개 깔끔한 레이어로 정돈.

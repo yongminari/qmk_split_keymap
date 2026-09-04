@@ -2,6 +2,11 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/)을 따릅니다.
 
+## 0.3.0 - 2026-09-04
+
+- `W/O`, `E/I`, `R/U`에 각각 GUI+Shift, Alt+Shift, Ctrl+Shift 홀드를 좌우 대칭으로 추가
+- 탭 시 기존 문자를 유지하는 Shift Combo Mods 배치와 사용법을 README에 반영
+
 ## 0.2.1 - 2026-09-04
 
 - `V_FUNC`와 `M_FUNC`의 탭/홀드 시간을 Home Row Mods와 동일한 200ms로 조정
