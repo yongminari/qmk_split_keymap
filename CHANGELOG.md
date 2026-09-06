@@ -2,6 +2,11 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/)을 따릅니다.
 
+## 0.4.1 - 2026-09-06
+
+- `T/Y` 홀드의 Shift가 다음 NAV 키 입력 시 초기화되던 weak modifier 처리를 일반 modifier로 교체
+- `T/Y` 탭은 기존 문자를 유지하고, 홀드 시 Navigation+Shift가 방향키 입력까지 정상 유지되도록 수정
+
 ## 0.4.0 - 2026-09-06
 
 - `T/Y`를 탭하면 기존 문자, 홀드하면 Navigation+Shift로 동작하도록 좌우 대칭 배치

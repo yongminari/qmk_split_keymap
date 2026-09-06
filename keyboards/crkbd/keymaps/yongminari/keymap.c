@@ -120,12 +120,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if ((keycode == T_NSFT || keycode == Y_NSFT) && !record->tap.count) {
         if (record->event.pressed) {
             if (nav_shift_hold_count++ == 0) {
-                add_weak_mods(MOD_BIT(KC_LSFT));
-                send_keyboard_report();
+                register_mods(MOD_BIT(KC_LSFT));
             }
         } else if (nav_shift_hold_count > 0 && --nav_shift_hold_count == 0) {
-            del_weak_mods(MOD_BIT(KC_LSFT));
-            send_keyboard_report();
+            unregister_mods(MOD_BIT(KC_LSFT));
         }
     }
 
