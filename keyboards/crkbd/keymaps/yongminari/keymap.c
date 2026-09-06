@@ -27,6 +27,8 @@ enum layers {
 #define O_SMET  LSG_T(KC_O)
 
 /* Layer Tap Aliases */
+#define T_NSFT   LT(_NAV, KC_T)
+#define Y_NSFT   LT(_NAV, KC_Y)
 #define V_FUNC   LT(_FUNC, KC_V)
 #define M_FUNC   LT(_FUNC, KC_M)
 #define SPC_NAV  LT(_NAV, KC_SPC)
@@ -51,7 +53,7 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_Q,    W_SMET,  E_SALT,  R_SCTL,  KC_T,    KC_NO,     KC_NO,   KC_Y,    U_SCTL,  I_SALT,  O_SMET,  KC_P,    _______,
+        _______, KC_Q,    W_SMET,  E_SALT,  R_SCTL,  T_NSFT,  KC_NO,     KC_NO,   Y_NSFT,  U_SCTL,  I_SALT,  O_SMET,  KC_P,    _______,
         /* Row 1: Left & Right */
         _______, KC_A,    S_MET,   D_ALT,   F_CTL,   KC_G,    KC_NO,     KC_NO,   KC_H,    J_CTL,   K_ALT,   L_MET,   KC_SCLN, _______,
         /* Row 2: Left & Right (6 keys each) */
@@ -78,27 +80,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /* Row 1: Left & Right */
         _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  KC_NO,     KC_NO,   KC_RCBR, KC_4,    KC_5,    KC_6,    KC_QUOT, _______,
         /* Row 2: Left & Right (6 keys each) */
-        _______, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               KC_EQL,  KC_1,    KC_2,    KC_3,    KC_QUES,  _______,
+        _______, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               KC_TILD, KC_1,    KC_2,    KC_3,    KC_DQUO,  _______,
         /* Thumb Row: Left & Right (3 keys each) */
         KC_UNDS, KC_PLUS, KC_PIPE,                                        KC_PERC, KC_0,    KC_DOT
     ),
 
     [_FUNC] = LAYOUT_split_3x6_3_ex2(
         /* Row 0: Left & Right */
-        _______, KC_VOLU, KC_F9,   KC_F8,   KC_F7,   KC_F12,  KC_NO,     KC_NO,   KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, _______,
+        _______, KC_VOLU, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,   KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, _______,
         /* Row 1: Left & Right */
-        _______, KC_VOLD, KC_F6,   KC_F5,   KC_F4,   KC_F11,  KC_NO,     KC_NO,   KC_F11,  KC_F4,   KC_F5,   KC_F6,   S(KC_PSCR), _______,
+        _______, KC_VOLD, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,   KC_F11,  KC_F4,   KC_F5,   KC_F6,   S(KC_PSCR), _______,
         /* Row 2: Left & Right (6 keys each) */
-        _______, _______, KC_F3,   KC_F2,   KC_F1,   KC_F10,               KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______,
+        _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______,
         /* Thumb Row: Left & Right (3 keys each) */
         _______, _______, _______,                                        _______, _______, _______
     )
 };
 
-#ifdef CAPS_WORD_ENABLE
+static uint8_t nav_shift_hold_count = 0;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef CAPS_WORD_ENABLE
     static uint16_t shift_tap_timer = 0;
-    
+
     // 외각 전용 Shift 키(KC_LSFT, KC_RSFT)의 더블탭을 감지하여 Caps Word 활성화
     if (keycode == KC_LSFT || keycode == KC_RSFT) {
         if (record->event.pressed) {
@@ -110,9 +114,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             shift_tap_timer = timer_read();
         }
     }
+#endif
+
+    // T/Y를 홀드하면 Nav 레이어와 Shift를 동시에 활성화
+    if ((keycode == T_NSFT || keycode == Y_NSFT) && !record->tap.count) {
+        if (record->event.pressed) {
+            if (nav_shift_hold_count++ == 0) {
+                add_weak_mods(MOD_BIT(KC_LSFT));
+                send_keyboard_report();
+            }
+        } else if (nav_shift_hold_count > 0 && --nav_shift_hold_count == 0) {
+            del_weak_mods(MOD_BIT(KC_LSFT));
+            send_keyboard_report();
+        }
+    }
+
     return true;
 }
-#endif
 
 #ifdef RGB_MATRIX_ENABLE
 bool rgb_matrix_indicators_user(void) {
