@@ -8,7 +8,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 QMK_FIRMWARE_DIR="${QMK_FIRMWARE_DIR:-/home/yongminari/qmk_firmware}"
-FW_PATH="$SCRIPT_DIR/crkbd_rev4_1_standard_yongminari.uf2"
+FW_PATH="$SCRIPT_DIR/crkbd_rev4_1_mini_yongminari.uf2"
 
 # Keep the keymap outside qmk_firmware using QMK's External Userspace support.
 export QMK_USERSPACE="$SCRIPT_DIR"
@@ -41,7 +41,7 @@ QMK_VERSION="$(git -C "$QMK_FIRMWARE_DIR" describe --tags --exact-match HEAD 2>/
 
 echo "==> [1/2] QMK $QMK_VERSION 펌웨어 컴파일을 시작합니다..."
 cd "$QMK_FIRMWARE_DIR"
-qmk compile -kb crkbd/rev4_1/standard -km yongminari --clean
+qmk compile -kb crkbd/rev4_1/mini -km yongminari --clean
 
 # 빌드 결과물 UF2 파일 확인
 if [ -f "$FW_PATH" ]; then

@@ -6,7 +6,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-FW_PATH="$SCRIPT_DIR/crkbd_rev4_1_standard_yongminari.uf2"
+FW_PATH="$SCRIPT_DIR/crkbd_rev4_1_mini_yongminari.uf2"
 
 if [ ! -f "$FW_PATH" ]; then
     echo "오류: UF2 파일($FW_PATH)을 찾을 수 없습니다."

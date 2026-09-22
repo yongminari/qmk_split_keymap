@@ -93,7 +93,7 @@ jobs:
           QMK_REF: ${{ needs.resolve_qmk.outputs.qmk_ref }}
         run: |
           version="$(tr -d '[:space:]' < VERSION)"
-          firmware="dist/crkbd_rev4_1_standard_yongminari.uf2"
+          firmware="dist/crkbd_rev4_1_mini_yongminari.uf2"
           package_dir="corne-firmware-v${version}"
 
           test -f "$firmware"

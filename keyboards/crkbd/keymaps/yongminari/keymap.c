@@ -51,49 +51,32 @@ enum layers {
 #define MS_ACL2 MS_ACL2
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_DEFAULT] = LAYOUT_split_3x6_3_ex2(
-        /* Row 0: Left & Right */
-        _______, KC_Q,    W_SMET,  E_SALT,  R_SCTL,  T_NSFT,  KC_NO,     KC_NO,   Y_NSFT,  U_SCTL,  I_SALT,  O_SMET,  KC_P,    _______,
-        /* Row 1: Left & Right */
-        _______, KC_A,    S_MET,   D_ALT,   F_CTL,   KC_G,    KC_NO,     KC_NO,   KC_H,    J_CTL,   K_ALT,   L_MET,   KC_SCLN, _______,
-        /* Row 2: Left & Right (6 keys each) */
-        _______, KC_Z,    KC_X,    KC_C,    V_FUNC,  KC_B,               KC_N,    M_FUNC,  KC_COMM, KC_DOT,  KC_SLSH, _______,
-        /* Thumb Row: Left & Right (3 keys each) */
-        TAB_NUM, SPC_NAV, KC_LSFT,                                       KC_RSFT, SPC_NAV, TAB_NUM
+    [_DEFAULT] = LAYOUT_split_3x5_3(
+        KC_Q,       W_SMET,     E_SALT,     R_SCTL,     T_NSFT,         Y_NSFT,     U_SCTL,     I_SALT,     O_SMET,     KC_P,
+        KC_A,       S_MET,      D_ALT,      F_CTL,      KC_G,           KC_H,       J_CTL,      K_ALT,      L_MET,      KC_SCLN,
+        KC_Z,       KC_X,       KC_C,       V_FUNC,     KC_B,           KC_N,       M_FUNC,     KC_COMM,    KC_DOT,     KC_SLSH,
+                                TAB_NUM,    SPC_NAV,    KC_LSFT,        KC_RSFT,    SPC_NAV,    TAB_NUM
     ),
 
-
-    [_NAV] = LAYOUT_split_3x6_3_ex2(
-        /* Row 0: Left & Right */
-        _______, KC_ESC,  MS_WH_L, MS_WH_U, MS_WH_D, MS_WH_R, KC_NO,     KC_NO,   KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
-        /* Row 1: Left & Right */
-        _______, _______, MS_L,    MS_U,    MS_D,    MS_R,    KC_NO,     KC_NO,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-        /* Row 2: Left & Right */
-        _______, _______, MS_BTN1, MS_BTN3, MS_BTN2, _______,               KC_ENT,  KC_BSPC, KC_DEL,  _______, _______, _______,
-        /* Thumb Row: Left & Right */
-        _______, _______, _______,                                        _______, KC_RALT, KC_RCTL
+    [_NAV] = LAYOUT_split_3x5_3(
+        KC_ESC,     MS_WH_L,    MS_WH_U,    MS_WH_D,    MS_WH_R,        KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     _______,
+        _______,    MS_L,       MS_U,       MS_D,       MS_R,           KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    _______,
+        _______,    MS_BTN1,    MS_BTN3,    MS_BTN2,    _______,        KC_ENT,     KC_BSPC,    KC_DEL,     _______,    _______,
+                                _______,    _______,    _______,        _______,    KC_RALT,    KC_RCTL
     ),
 
-    [_NUM] = LAYOUT_split_3x6_3_ex2(
-        /* Row 0: Left & Right */
-        _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_NO,     KC_NO,   KC_LCBR, KC_7,    KC_8,    KC_9,    KC_GRV,  _______,
-        /* Row 1: Left & Right */
-        _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,  KC_NO,     KC_NO,   KC_RCBR, KC_4,    KC_5,    KC_6,    KC_QUOT, _______,
-        /* Row 2: Left & Right (6 keys each) */
-        _______, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSLS,               KC_TILD, KC_1,    KC_2,    KC_3,    KC_DQUO,  _______,
-        /* Thumb Row: Left & Right (3 keys each) */
-        KC_UNDS, KC_PLUS, KC_PIPE,                                        KC_PERC, KC_0,    KC_DOT
+    [_NUM] = LAYOUT_split_3x5_3(
+        KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,        KC_LCBR,    KC_7,       KC_8,       KC_9,       KC_GRV,
+        KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_MINS,    KC_EQL,         KC_RCBR,    KC_4,       KC_5,       KC_6,       KC_QUOT,
+        KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_BSLS,        KC_TILD,    KC_1,       KC_2,       KC_3,       KC_DQUO,
+                                KC_UNDS,    KC_PLUS,    KC_PIPE,        KC_PERC,    KC_0,       KC_DOT
     ),
 
-    [_FUNC] = LAYOUT_split_3x6_3_ex2(
-        /* Row 0: Left & Right */
-        _______, KC_VOLU, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,   KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, _______,
-        /* Row 1: Left & Right */
-        _______, KC_VOLD, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,   KC_F11,  KC_F4,   KC_F5,   KC_F6,   S(KC_PSCR), _______,
-        /* Row 2: Left & Right (6 keys each) */
-        _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______,
-        /* Thumb Row: Left & Right (3 keys each) */
-        _______, _______, _______,                                        _______, _______, _______
+    [_FUNC] = LAYOUT_split_3x5_3(
+        KC_VOLU,    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_F12,     KC_F7,      KC_F8,      KC_F9,      KC_PSCR,
+        KC_VOLD,    KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_F11,     KC_F4,      KC_F5,      KC_F6,      S(KC_PSCR),
+        KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,          KC_F10,     KC_F1,      KC_F2,      KC_F3,      _______,
+                                _______,    _______,    _______,        _______,    _______,    _______
     )
 };
 
@@ -132,11 +115,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef RGB_MATRIX_ENABLE
 bool rgb_matrix_indicators_user(void) {
-    // 엄지 키 6개 전원 표시등 (Corne v4.1 LED 인덱스 기준)
-    // 왼쪽 엄지: 0, 7, 8
-    // 오른쪽 엄지: 23, 30, 31
-    const uint8_t thumb_leds[] = {0, 7, 8, 23, 30, 31};
-    
+    // 엄지 키 6개 전원 표시등 (Corne v4.1 Mini LED 인덱스 기준)
+    // 왼쪽 엄지: 0, 7, 8 / 오른쪽 엄지: 20, 27, 28
+    const uint8_t thumb_leds[] = {0, 7, 8, 20, 27, 28};
+
     for (uint8_t i = 0; i < sizeof(thumb_leds); i++) {
         rgb_matrix_set_color(thumb_leds[i], 50, 50, 50);
     }

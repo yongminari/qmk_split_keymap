@@ -1,4 +1,6 @@
-# Corne v4.1 펌웨어 플래싱
+# Corne v4.1 Mini (36키) 펌웨어 플래싱
+
+바깥쪽 PCB를 절단한 `crkbd/rev4_1/mini` 보드의 36키 구성용 펌웨어입니다.
 
 이 패키지의 `flash.sh`는 Linux용 도우미입니다. Windows와 macOS에서는 릴리스의 UF2 파일을 `RPI-RP2` 드라이브로 직접 복사하면 됩니다.
 
