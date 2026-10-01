@@ -2,6 +2,11 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/)을 따릅니다.
 
+## 0.5.0 - 2026-10-02
+
+- Function 레이어의 `Z` 위치에 음소거(`KC_MUTE`) 추가: `V` 또는 `M`을 홀드하고 `Z`를 누르면 음소거 전환
+- Function 레이어의 `Q/A/Z`에 볼륨 증가·감소·음소거를 한 열로 배치하고 README 배치도 갱신
+
 ## 0.4.1 - 2026-09-06
 
 - `T/Y` 홀드의 Shift가 다음 NAV 키 입력 시 초기화되던 weak modifier 처리를 일반 modifier로 교체
