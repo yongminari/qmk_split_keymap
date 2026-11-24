@@ -2,6 +2,10 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/)을 따릅니다.
 
+## 미출시
+
+- `V` 또는 `M`을 홀드하고 `/`를 누르면 활성 창 캡처용 `Alt + Print Screen`을 전송합니다. README에 niri 단축키 설정 예시를 추가했습니다.
+
 ## 0.5.0 - 2026-10-02
 
 - Function 레이어의 `Z` 위치에 음소거(`KC_MUTE`) 추가: `V` 또는 `M`을 홀드하고 `Z`를 누르면 음소거 전환
